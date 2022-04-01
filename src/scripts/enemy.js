@@ -5,7 +5,7 @@ const COLOR = 'red';
 
 class Enemy extends MovingObject{
     constructor(pos){
-        super(pos, [0, 0], RADIUS, COLOR);
+        super(pos, [1, 1], RADIUS, COLOR);
     }
 }
 

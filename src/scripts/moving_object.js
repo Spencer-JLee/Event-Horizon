@@ -1,3 +1,6 @@
+const DIM_X = 1024;
+const DIM_Y = 768;
+
 class MovingObject{
     constructor(pos, vel, radius, color){
         this.pos = pos;
@@ -27,6 +30,16 @@ class MovingObject{
         let y = this.pos[1] + this.vel[1];
 
         this.pos = [x, y]
+    }
+
+    isCollidedWith(otherObject){
+        let x_diff = otherObject.pos[0] - this.pos[0];
+        let y_diff = otherObject.pos[1] - this.pos[1];
+
+        let dist = Math.sqrt(Math.pow(x_diff, 2) + Math.pow(y_diff, 2));
+        let radiiSum = this.radius + otherObject.radius;
+
+        return dist <= radiiSum;
     }
 }
 

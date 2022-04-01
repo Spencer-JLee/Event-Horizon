@@ -7,8 +7,8 @@ class GameView{
     }
 
     start(){
-        let moveInterval = setInterval(this.game.move.bind(this.game), 16);
-        let drawInterval = setInterval(() => {
+        setInterval(this.game.step.bind(this.game), 16);
+        setInterval(() => {
             this.game.draw.bind(this.game)(this.ctx);
         }, 16);
     }
