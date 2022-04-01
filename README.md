@@ -25,6 +25,8 @@ In addition, this project will have:
 
 ## Wireframes
 
+![wireframe](wireframe.png)
+
 * Nav links will point the project's GitHub repo, my LinkedIn and AngelList.
 * Instructions will on the side for the player to understand how to operate the game
 * The game will be mostly operated on keypresses and mouse clicks, thus not requiring many buttons
