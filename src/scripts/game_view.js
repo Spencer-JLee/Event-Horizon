@@ -5,10 +5,11 @@ class GameView{
         this.game = new Game();
         this.ctx = ctx;
         this.player = this.game.player;
+        this.bindKeyHandlers();
     }
 
     start(){
-        this.bindKeyHandlers();
+        
         setInterval(this.game.step.bind(this.game), 16);
         setInterval(() => {
             this.game.draw.bind(this.game)(this.ctx);
@@ -16,7 +17,7 @@ class GameView{
     }
 
     bindKeyHandlers(){
-        this.ctx.addEventListener("keydown", keydown, false);
+        document.addEventListener("keydown", this.keydown.bind(this), false);
     }
 
     keydown(e){
@@ -32,6 +33,7 @@ class GameView{
         else if(e.key === "D"){
             this.player.pos[0] += 7;
         }
+        console.log("hello");
     }
 }
 
