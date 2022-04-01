@@ -46,6 +46,7 @@ class Game{
                     objs[j].vel[0] = objs[j].vel[0] * -1;
                     objs[j].vel[1] = objs[j].vel[1] * -1;
                 }
+
             }
         }
     }
@@ -86,52 +87,10 @@ class Game{
     }
 
     move(){
-        if(this.rightPressed){
-            this.player.pos[0] += 8;
-        }
-        else if(this.leftPressed){
-            this.player.pos[0] -= 8;
-        }
-        else if(this.upPressed){
-            this.player.pos[1] += 8;
-        }
-        else if(this.downPressed){
-            this.player.pos[1] -= 8;
-        }
 
         this.allObjects().forEach(obj => {
             obj.move();
         })
-    }
-
-    pressedKeyHandler(e){
-        if(e.key == "Right" || e.key == "ArrowRight" || e.key =="d"){
-            this.rightPressed = true;
-        }
-        else if(e.key == "Left" || e.key == "ArrowLeft" || e.key == "a"){
-            this.leftPressed = true;
-        }
-        else if(e.key == "Up" || e.key == "ArrowUp" || e.key == "w"){
-            this.upPressed = true;
-        }
-        else if(e.key == "Down" || e.key == "ArrowDown" || e.key == "s"){
-            this.downPressed = true;
-        }
-    }
-
-    notPressedKeyHandler(e){
-        if(e.key == "Right" || e.key == "ArrowRight" || e.key =="d"){
-            this.rightPressed = false;
-        }
-        else if(e.key == "Left" || e.key == "ArrowLeft" || e.key == "a"){
-            this.leftPressed = false;
-        }
-        else if(e.key == "Up" || e.key == "ArrowUp" || e.key == "w"){
-            this.upPressed = false;
-        }
-        else if(e.key == "Down" || e.key == "ArrowDown" || e.key == "s"){
-            this.downPressed = false;
-        }
     }
 }
 
