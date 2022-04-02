@@ -5,11 +5,11 @@ class GameView{
         this.game = new Game();
         this.ctx = ctx;
         this.player = this.game.player;
-        this.bindKeyHandlers();
     }
 
     start(){
-        
+        this.bindKeyHandlers();
+        // debugger;
         setInterval(this.game.step.bind(this.game), 16);
         setInterval(() => {
             this.game.draw.bind(this.game)(this.ctx);
@@ -21,19 +21,22 @@ class GameView{
     }
 
     keydown(e){
-        if(e.key === "W"){
-            this.player.pos[1] -= 7
+        switch(e.key){
+            case 'w':
+                this.player.travel([0, -3]);
+                break;
+            case 'a':
+                this.player.travel([-3, 0]);
+                break;
+            case 's':
+                this.player.travel([0, 3]);
+                break;
+            case 'd':
+                this.player.travel([3, 0]);
+                break;
         }
-        else if(e.key === "A"){
-            this.player.pos[0] -= 7
-        }
-        else if(e.key === "S"){
-            this.player.pos[1] += 7
-        }
-        else if(e.key === "D"){
-            this.player.pos[0] += 7;
-        }
-        console.log("hello");
+        // console.log(`${e.key}`)
+        // console.log(`${this.player.wPressed}`)
     }
 }
 
