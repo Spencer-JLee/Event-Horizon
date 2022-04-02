@@ -11,8 +11,8 @@ class Game{
     constructor(){
         this.enemies = [];
         this.projectiles = [];
-        this.addEnemies();  
         this.player = new Player(this);
+        this.addEnemies();  
     }
 
     addObject(obj){
@@ -45,13 +45,29 @@ class Game{
         for(let i = 0; i < objs.length; i++){
             for(let j = i+1; j < objs.length; j++){
                 if(objs[i].isCollidedWith(objs[j])){
-                    objs[i].vel[0] *= -1;
-                    objs[i].vel[1] *= -1;
-                    objs[j].vel[0] *= -1;
-                    objs[j].vel[1] *= -1;
+                    if((objs[i] instanceof Projectile && objs[j] instanceof Enemy)
+                    || (objs[i] instanceof Enemy && objs[j] instanceof Projectile)){
+                        this.remove(objs[i])
+                        this.remove(objs[j])
+                    }
+                    else{
+                        objs[i].vel[0] *= -1;
+                        objs[j].vel[0] *= -1;
+                        objs[i].vel[1] *= -1;
+                        objs[j].vel[1] *= -1;
+                    }
                 }
 
             }
+        }
+    }
+
+    remove(obj){
+        if(obj instanceof Enemy){
+            this.enemies.splice(this.enemies.indexOf(obj), 1)
+        }
+        else if(obj instanceof Projectile){
+            this.projectiles.splice(this.projectiles.indexOf(obj), 1)
         }
     }
 
@@ -74,7 +90,14 @@ class Game{
         }
     }
 
+    findPlayer(){
+        this.enemies.forEach(enemy =>{
+            enemy.findPlayer(this.player);
+        })
+    }
+
     step(){
+        this.findPlayer();
         this.move();
         this.checkCollisions();
         this.outOfBounds();
