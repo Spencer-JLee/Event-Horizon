@@ -2,11 +2,12 @@ const DIM_X = 1024;
 const DIM_Y = 768;
 
 class MovingObject{
-    constructor(pos, vel, radius, color){
+    constructor(pos, vel, radius, color, game){
         this.pos = pos;
         this.vel = vel;
         this.radius = radius;
         this.color = color;
+        this.game = game;
     }
 
     draw(ctx){

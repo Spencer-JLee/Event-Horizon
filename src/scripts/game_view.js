@@ -9,7 +9,6 @@ class GameView{
 
     start(){
         this.bindKeyHandlers();
-        // debugger;
         setInterval(this.game.step.bind(this.game), 16);
         setInterval(() => {
             this.game.draw.bind(this.game)(this.ctx);
@@ -18,6 +17,7 @@ class GameView{
 
     bindKeyHandlers(){
         document.addEventListener("keydown", this.keydown.bind(this), false);
+        document.addEventListener("click", this.fire.bind(this), false)
     }
 
     keydown(e){
@@ -35,8 +35,10 @@ class GameView{
                 this.player.travel([3, 0]);
                 break;
         }
-        // console.log(`${e.key}`)
-        // console.log(`${this.player.wPressed}`)
+    }
+
+    fire(e){
+        this.player.shoot([e.clientX, e.clientY]);
     }
 }
 

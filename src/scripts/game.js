@@ -1,5 +1,6 @@
 import Enemy from "./enemy"
 import Player from "./player"
+import Projectile from "./projectile"
 
 const DIM_X = 1024;
 const DIM_Y = 768;
@@ -9,13 +10,20 @@ class Game{
 
     constructor(){
         this.enemies = [];
+        this.projectiles = [];
         this.addEnemies();  
-        this.player = new Player();
+        this.player = new Player(this);
+    }
+
+    addObject(obj){
+        if(obj instanceof Projectile){
+            this.projectiles.push(obj);
+        }
     }
 
     addEnemies(){
         for(let i = 0; i < NUM_ENEMIES; i++){
-            let enemy = new Enemy(this.randomPosition());
+            let enemy = new Enemy(this.randomPosition(), this);
             this.enemies.push(enemy);
         }
     }
@@ -27,7 +35,7 @@ class Game{
     }
 
     allObjects(){
-        let arr = this.enemies.concat([this.player])
+        let arr = this.enemies.concat([this.player], this.projectiles)
         return arr;
     }
 
@@ -51,16 +59,16 @@ class Game{
         let objs = this.allObjects();
 
         for(let i = 0; i < objs.length; i++){
-            if(objs[i].pos[0] + objs[i].vel[0] > DIM_X - objs[i].radius){
+            if(objs[i].pos[0] + objs[i].vel[0] > DIM_X - objs[i].radius + 2){
                 objs[i].vel[0] *= -1;
             }
-            if(objs[i].pos[0] + objs[i].vel[0] < objs[i].radius){
+            if(objs[i].pos[0] + objs[i].vel[0] < objs[i].radius + 2){
                 objs[i].vel[0] *= -1;
             }
-            if(objs[i].pos[1] + objs[i].vel[1] > DIM_Y - objs[i].radius){
+            if(objs[i].pos[1] + objs[i].vel[1] > DIM_Y - objs[i].radius + 2){
                 objs[i].vel[1] *= -1;
             }
-            if(objs[i].pos[1] + objs[i].vel[1] < objs[i].radius){
+            if(objs[i].pos[1] + objs[i].vel[1] < objs[i].radius + 2){
                 objs[i].vel[1] *= -1;
             }
         }
