@@ -1,6 +1,6 @@
 import Projectile from "./projectile";
 
-const RADIUS = 5;
+const RADIUS = 3;
 const COLOR = "white"
 
 class Single extends Projectile{

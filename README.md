@@ -2,8 +2,7 @@
 
 ## TODO
 * Player out of bounds for top and left
-* Include max velocity
-* Collision detection for enemies when colliding with other enemies
+* Collision detection for enemies when colliding with other enemies/player
 * Fix spread weapon
 * Add player health/score
 * Add pause
@@ -11,7 +10,8 @@
 * Try to make enemies spawn out of bounds
     * Then they cannot move out of bounds once inside screen
 * Add additional enemies
-* Import models for rendering player, enemies, board, projectiles, etc.
+* Create models for rendering player, enemies, board, projectiles, etc.
+* Game over condition
 
 ## Background
 This game is a 2d top-down shoot'em up game, in which the goal is to survive as long as possible until you are defeated. To break this game down,

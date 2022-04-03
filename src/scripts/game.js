@@ -1,11 +1,16 @@
 import Enemy from "./enemy"
 import Player from "./player"
 import Projectile from "./projectile"
+import Single from "./single"
+import Spread from "./spread"
+import Ray from "./ray"
 import Big from "./big"
 
 const DIM_X = 1024;
 const DIM_Y = 768;
 const NUM_ENEMIES = 10;
+const DECELERATION = 0.95;
+const DAMAGE = [3, 2, 4, 5, 1]
 
 class Game{
 
@@ -48,25 +53,65 @@ class Game{
                 if(objs[i].isCollidedWith(objs[j])){
                     if((objs[i] instanceof Projectile && objs[j] instanceof Enemy)
                     || (objs[i] instanceof Enemy && objs[j] instanceof Projectile)){
-                        this.remove(objs[i]);
-                        this.createExplosion(objs[i]);
-                        this.remove(objs[j]);
-                        this.createExplosion(objs[j]);
-                    }
-                    else if((objs[i] instanceof Projectile && objs[j] instanceof Player)
-                    || (objs[i] instanceof Player && objs[j] instanceof Projectile)
-                    || (objs[i] instanceof Projectile && objs[j] instanceof Projectile)){
                         
+                        if(objs[i] instanceof Enemy){
+                            this.checkEnemy(objs[i], objs[j]);
+                        }
+                        else{
+                            this.remove(objs[i]);
+                            this.createExplosion(objs[i]);
+                        }
+
+                        if(objs[j] instanceof Enemy){
+                            this.checkEnemy(objs[j], objs[i]);
+                        }
+                        else{
+                            this.remove(objs[j]);
+                            this.createExplosion(objs[j]);
+                        }
                     }
+
+                    else if((objs[i] instanceof Player && objs[j] instanceof Enemy)
+                    || (objs[i] instanceof Enemy && objs[j] instanceof Player)){
+                        // this.player.health -= 5;
+                        // if(this.player.health <= 0){
+                        //     alert("GAME OVER");
+                        // }
+                    }
+                    // else if(objs[i] instanceof Enemy && objs[j] instanceof Enemy){
+
+                    // }
                     else{
-                        objs[i].vel[0] *= -1;
-                        objs[j].vel[0] *= -1;
-                        objs[i].vel[1] *= -1;
-                        objs[j].vel[1] *= -1;
+
                     }
                 }
 
             }
+        }
+    }
+
+    checkEnemy(enemy, projectile){
+        if(projectile instanceof Single){
+            enemy.health -= DAMAGE[0];
+        }
+
+        else if(projectile instanceof Spread){
+            enemy.health -= DAMAGE[1];
+        }
+
+        else if(projectile instanceof Ray){
+            enemy.health -= DAMAGE[2];
+        }
+
+        else if(projectile instanceof Big){
+            enemy.health -= DAMAGE[3];
+        }
+        else{
+            enemy.health -= DAMAGE[4];
+        }
+
+        if(enemy.health <= 0){
+            this.remove(enemy);
         }
     }
 
@@ -121,9 +166,9 @@ class Game{
 
     createExplosion(obj){
         if(obj instanceof Big){
-            for(let i = 0; i < 8; i++){
+            for(let i = 0; i < 6; i++){
                 let proj = new Projectile(obj.pos, 
-                    [Math.random() + 0.1, Math.random() + 0.1],
+                    [Math.random() * 2 - 1, Math.random() * 2 - 1],
                     2, "pink", this);
                 this.projectiles.push(proj);
             }
@@ -181,8 +226,8 @@ class Game{
         this.allObjects().forEach(obj => {
             obj.move();
             if(obj instanceof Player){
-                obj.vel[0] *= 0.925;
-                obj.vel[1] *= 0.925;
+                obj.vel[0] *= DECELERATION;
+                obj.vel[1] *= DECELERATION;
             }
         })
     }

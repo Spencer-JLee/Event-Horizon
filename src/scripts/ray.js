@@ -1,6 +1,6 @@
 import Projectile from "./projectile";
 
-const RADIUS = 3;
+const RADIUS = 2;
 const COLOR = "black";
 
 class Ray extends Projectile{

@@ -6,6 +6,7 @@ const COLOR = 'red';
 class Enemy extends MovingObject{
     constructor(pos){
         super(pos, [1, 1], RADIUS, COLOR);
+        this.health = 10;
     }
 
     findPlayer(player){

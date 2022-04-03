@@ -8,18 +8,26 @@ import Big from "./big"
 const RADIUS = 10;
 const COLOR = "green";
 const WEAPONS = ["single", "spread", "ray", "big"]
-const SPEEDS = [15, 15, 100, 3];
+const SPEEDS = [15, 15, 20, 3];
+const MAXSPEED = 7;
 
 
 class Player extends MovingObject{
     constructor(game){
         super([512, 384], [0, 0], RADIUS, COLOR, game);
         this.weaponIdx = 0;
+        this.health = 100;
     }
 
     travel(velocity){
-        this.vel[0] += velocity[0];
-        this.vel[1] += velocity[1];
+        if(this.vel[0] + velocity[0] <= MAXSPEED && 
+            this.vel[0] + velocity[0] >= MAXSPEED * -1){
+            this.vel[0] += velocity[0];
+        }
+        if(this.vel[1] + velocity[1] <= MAXSPEED &&
+            this.vel[1] + velocity[1] >= MAXSPEED * -1){
+            this.vel[1] += velocity[1];
+        }
     }
 
     shoot(eventPos){
