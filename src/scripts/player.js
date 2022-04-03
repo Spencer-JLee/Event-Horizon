@@ -8,7 +8,7 @@ import Big from "./big"
 const RADIUS = 10;
 const COLOR = "green";
 const WEAPONS = ["single", "spread", "ray", "big"]
-const SPEEDS = [15, 15, 100, 10];
+const SPEEDS = [15, 15, 100, 3];
 
 
 class Player extends MovingObject{

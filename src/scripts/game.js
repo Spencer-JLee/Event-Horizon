@@ -1,6 +1,7 @@
 import Enemy from "./enemy"
 import Player from "./player"
 import Projectile from "./projectile"
+import Big from "./big"
 
 const DIM_X = 1024;
 const DIM_Y = 768;
@@ -47,10 +48,17 @@ class Game{
                 if(objs[i].isCollidedWith(objs[j])){
                     if((objs[i] instanceof Projectile && objs[j] instanceof Enemy)
                     || (objs[i] instanceof Enemy && objs[j] instanceof Projectile)){
-                        this.remove(objs[i])
-                        this.remove(objs[j])
+                        this.remove(objs[i]);
+                        this.createExplosion(objs[i]);
+                        this.remove(objs[j]);
+                        this.createExplosion(objs[j]);
                     }
-                    else if([objs[i], objs[i]].some(ele => !(ele instanceof Projectile))){
+                    else if((objs[i] instanceof Projectile && objs[j] instanceof Player)
+                    || (objs[i] instanceof Player && objs[j] instanceof Projectile)
+                    || (objs[i] instanceof Projectile && objs[j] instanceof Projectile)){
+                        
+                    }
+                    else{
                         objs[i].vel[0] *= -1;
                         objs[j].vel[0] *= -1;
                         objs[i].vel[1] *= -1;
@@ -79,6 +87,7 @@ class Game{
                 if(this.checkTop(objs[i]) || this.checkDown(objs[i])
                 || this.checkLeft(objs[i]) || this.checkRight(objs[i])){
                     this.remove(objs[i])
+                    this.createExplosion(objs[i])
                 }
             }
             else if(objs[i] instanceof Enemy){
@@ -90,12 +99,33 @@ class Game{
                 }
             }
             else if(objs[i] instanceof Player){
-                if(this.checkTop(objs[i]) || this.checkDown(objs[i])){
-                    objs[i].vel[1] *= -1;
+                if(this.checkTop(objs[i])){
+                    objs[i].pos[1] += objs[i].vel[1] + 1;
+                    objs[i].vel[1] = 0;
                 }
-                else if(this.checkLeft(objs[i]) || this.checkRight(objs[i])){
-                    objs[i].vel[0] *= -1;
+                else if(this.checkDown(objs[i])){
+                    objs[i].pos[1] -= objs[i].vel[1] + 1;
+                    objs[i].vel[1] = 0;
                 }
+                else if(this.checkLeft(objs[i])){
+                    objs[i].pos[0] += objs[i].vel[0] + 1;
+                    objs[i].vel[0] = 0;
+                }
+                else if(this.checkRight(objs[i])){
+                    objs[i].pos[0] -= objs[i].vel[0] + 1;
+                    objs[i].vel[0] = 0;
+                }
+            }
+        }
+    }
+
+    createExplosion(obj){
+        if(obj instanceof Big){
+            for(let i = 0; i < 8; i++){
+                let proj = new Projectile(obj.pos, 
+                    [Math.random() + 0.1, Math.random() + 0.1],
+                    2, "pink", this);
+                this.projectiles.push(proj);
             }
         }
     }
@@ -150,6 +180,10 @@ class Game{
     move(){
         this.allObjects().forEach(obj => {
             obj.move();
+            if(obj instanceof Player){
+                obj.vel[0] *= 0.925;
+                obj.vel[1] *= 0.925;
+            }
         })
     }
 }

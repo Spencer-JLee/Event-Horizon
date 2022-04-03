@@ -1,10 +1,9 @@
 # Survival Game
 
 ## TODO
-* Deceleration for player
-* Player out of bounds
+* Player out of bounds for top and left
+* Include max velocity
 * Collision detection for enemies when colliding with other enemies
-* Projectile detection when colliding with another projectile/player
 * Fix spread weapon
 * Add player health/score
 * Add pause
