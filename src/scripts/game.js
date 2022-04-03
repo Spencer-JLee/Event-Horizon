@@ -50,7 +50,7 @@ class Game{
                         this.remove(objs[i])
                         this.remove(objs[j])
                     }
-                    else{
+                    else if([objs[i], objs[i]].some(ele => !(ele instanceof Projectile))){
                         objs[i].vel[0] *= -1;
                         objs[j].vel[0] *= -1;
                         objs[i].vel[1] *= -1;
@@ -75,18 +75,52 @@ class Game{
         let objs = this.allObjects();
 
         for(let i = 0; i < objs.length; i++){
-            if(objs[i].pos[0] + objs[i].vel[0] > DIM_X - objs[i].radius + 2){
-                objs[i].vel[0] *= -1;
+            if(objs[i] instanceof Projectile){
+                if(this.checkTop(objs[i]) || this.checkDown(objs[i])
+                || this.checkLeft(objs[i]) || this.checkRight(objs[i])){
+                    this.remove(objs[i]);
+                }
             }
-            if(objs[i].pos[0] + objs[i].vel[0] < objs[i].radius + 2){
-                objs[i].vel[0] *= -1;
+            else if(objs[i] instanceof Enemy){
+                if(this.checkTop(objs[i]) || this.checkDown(objs[i])){
+                    objs[i].vel[1] *= -1;
+                }
+                else if(this.checkLeft(objs[i]) || this.checkRight(objs[i])){
+                    objs[i].vel[0] *= -1;
+                }
             }
-            if(objs[i].pos[1] + objs[i].vel[1] > DIM_Y - objs[i].radius + 2){
-                objs[i].vel[1] *= -1;
+            else if(objs[i] instanceof Player){
+                if(this.checkTop(objs[i]) || this.checkDown(objs[i])){
+                    objs[i].vel[1] *= -1;
+                }
+                else if(this.checkLeft(objs[i]) || this.checkRight(objs[i])){
+                    objs[i].vel[0] *= -1;
+                }
             }
-            if(objs[i].pos[1] + objs[i].vel[1] < objs[i].radius + 2){
-                objs[i].vel[1] *= -1;
-            }
+        }
+    }
+
+    checkTop(obj){
+        if(obj.pos[1] + obj.vel[1] < obj.radius + 2){
+            return true;
+        }
+    }
+
+    checkLeft(obj){
+        if(obj.pos[0] + obj.vel[0] < obj.radius + 1){
+            return true;
+        }
+    }
+
+    checkDown(obj){
+        if(obj.pos[1] + obj.vel[1] > DIM_Y - obj.radius + 1){
+            return true;
+        }
+    }
+
+    checkRight(obj){
+        if(obj.pos[0] + obj.vel[0] > DIM_X - obj.radius + 1){
+            return true;
         }
     }
 
