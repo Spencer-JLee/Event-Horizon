@@ -34,6 +34,12 @@ class GameView{
             case 'd':
                 this.player.travel([3, 0]);
                 break;
+            case 'q':
+                this.player.backWeapon();
+                break;
+            case 'e':
+                this.player.forwardWeapon();
+                break;
         }
     }
 

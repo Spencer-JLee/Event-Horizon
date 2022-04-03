@@ -1,11 +1,8 @@
 import MovingObject from "./moving_object";
 
-const RADIUS = 3;
-const COLOR = "white"
-
 class Projectile extends MovingObject{
-    constructor(pos, vel, game){
-        super(pos, vel, RADIUS, COLOR, game);
+    constructor(pos, vel, radius, color, game){
+        super(pos, vel, radius, color, game);
     }
 }
 

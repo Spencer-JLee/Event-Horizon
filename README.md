@@ -1,4 +1,18 @@
-# aA-Javascript-Project
+# Survival Game
+
+## TODO
+* Deceleration for player
+* Player out of bounds
+* Collision detection for enemies when colliding with other enemies
+* Projectile detection when colliding with another projectile/player
+* Fix spread weapon
+* Add player health/score
+* Add pause
+* Implement requestAnimationFrame
+* Try to make enemies spawn out of bounds
+    * Then they cannot move out of bounds once inside screen
+* Add additional enemies
+* Import models for rendering player, enemies, board, projectiles, etc.
 
 ## Background
 This game is a 2d top-down shoot'em up game, in which the goal is to survive as long as possible until you are defeated. To break this game down,

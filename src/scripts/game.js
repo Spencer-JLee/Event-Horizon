@@ -78,7 +78,7 @@ class Game{
             if(objs[i] instanceof Projectile){
                 if(this.checkTop(objs[i]) || this.checkDown(objs[i])
                 || this.checkLeft(objs[i]) || this.checkRight(objs[i])){
-                    this.remove(objs[i]);
+                    this.remove(objs[i])
                 }
             }
             else if(objs[i] instanceof Enemy){
