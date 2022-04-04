@@ -1,7 +1,7 @@
 import Projectile from "./projectile";
 
 const RADIUS = 3;
-const COLOR = "white"
+const COLOR = "blue"
 
 class Single extends Projectile{
     constructor(pos, vel, game){

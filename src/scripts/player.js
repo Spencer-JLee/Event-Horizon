@@ -19,7 +19,8 @@ class Player extends MovingObject{
         this.weaponIdx = 0;
         this.health = 100;
         this.weapons = WEAPONS;
-        this.ammo = AMMO;
+        this.ammo = [100, 75, 50, 25];
+        this.maxAmmo = AMMO;
     }
 
     travel(velocity){

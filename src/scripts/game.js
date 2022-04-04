@@ -1,10 +1,12 @@
 import Enemy from "./enemy"
-import Player, { WEAPONS } from "./player"
+import Player from "./player"
 import Projectile from "./projectile"
 import Single from "./single"
 import Spread from "./spread"
 import Ray from "./ray"
 import Big from "./big"
+import Ammunition from "./ammunition"
+import Health from "./health"
 
 const DIM_X = 1024;
 const DIM_Y = 768;
@@ -17,6 +19,7 @@ class Game{
     constructor(){
         this.enemies = [];
         this.projectiles = [];
+        this.pickups = [];
         this.player = new Player(this);
         this.addEnemies();  
         this.score = 0;
@@ -43,7 +46,7 @@ class Game{
     }
 
     allObjects(){
-        let arr = this.enemies.concat([this.player], this.projectiles)
+        let arr = this.enemies.concat([this.player], this.projectiles, this.pickups)
         return arr;
     }
 
@@ -71,6 +74,38 @@ class Game{
                             this.remove(objs[j]);
                             this.createExplosion(objs[j]);
                         }
+                    }
+                    else if((objs[i] instanceof Player && objs[j] instanceof Ammunition)
+                    || (objs[i] instanceof Ammunition && objs[j] instanceof Player)){
+                        if(objs[i] instanceof Ammunition){
+                            this.remove(objs[i]);
+                        }
+                        else if(objs[j] instanceof Ammunition){
+                            this.remove(objs[j]);
+                        }
+
+                        let maxAmmo = this.player.maxAmmo[this.player.weaponIdx];
+
+                        this.player.ammo[this.player.weaponIdx] += maxAmmo * 0.1;
+                        if(this.player.ammo[this.player.weaponIdx] > maxAmmo){
+                            this.player.ammo[this.player.weaponIdx] = maxAmmo;
+                        }
+                        debugger;
+                    }
+                    else if((objs[i] instanceof Player && objs[j] instanceof Health)
+                    || (objs[i] instanceof Health && objs[j] instanceof Player)){
+                        if(objs[i] instanceof Health){
+                            this.remove(objs[i])
+                        }
+                        else if(objs[j] instanceof Health){
+                            this.remove(objs[j]);
+                        }
+                        this.player.health += 10;
+
+                        if(this.player.health > 100){
+                            this.player.health = 100;
+                        }
+
                     }
                     else if((objs[i] instanceof Player && objs[j] instanceof Enemy)
                     || (objs[i] instanceof Enemy && objs[j] instanceof Player)){
@@ -138,6 +173,7 @@ class Game{
         if(enemy.health <= 0){
             this.remove(enemy);
             this.score += 100;
+            this.createPickup(enemy.pos);
         }
     }
 
@@ -147,6 +183,9 @@ class Game{
         }
         else if(obj instanceof Projectile){
             this.projectiles.splice(this.projectiles.indexOf(obj), 1)
+        }
+        else if(obj instanceof Health || obj instanceof Ammunition){
+            this.pickups.splice(this.pickups.indexOf(obj), 1)
         }
     }
 
@@ -200,6 +239,18 @@ class Game{
                     2, "pink", this);
                 this.projectiles.push(proj);
             }
+        }
+    }
+
+    createPickup(pos){
+        let rng = Math.random() * 100;
+        if(rng < 50){
+            let health = new Health(pos, this);
+            this.pickups.push(health);
+        }
+        else if(rng >= 50){
+            let ammunition = new Ammunition(pos, this);
+            this.pickups.push(ammunition);
         }
     }
 

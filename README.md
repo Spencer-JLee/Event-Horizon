@@ -3,11 +3,12 @@
 ## TODO
 * Major Bugs:
     * Collision detection for enemies when colliding with other enemies
+    * Fix ammunition not updating properly
+    * Fix ammunition destroying all when picking up one
 
 * Minor Bugs:
 
 * Future Features:
-    * Add ammo counter
     * Add time survived to score
     * Add new types of enemies
     * Add pause
