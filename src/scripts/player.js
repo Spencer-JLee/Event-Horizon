@@ -64,7 +64,7 @@ class Player extends MovingObject{
 
         return [xVel, yVel];
     }
-
+    //check math for calcVel1 and calcVel2 to ensure that spread works properly
     calcVel1(projVel){
         let unitSpeedX = projVel[0] / SPEEDS[this.weaponIdx];
         let theta = Math.asin(unitSpeedX);

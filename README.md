@@ -1,17 +1,26 @@
 # Survival Game
 
 ## TODO
-* Player out of bounds for top and left
-* Collision detection for enemies when colliding with other enemies/player
-* Fix spread weapon
-* Add player health/score
-* Add pause
-* Implement requestAnimationFrame
-* Try to make enemies spawn out of bounds
-    * Then they cannot move out of bounds once inside screen
-* Add additional enemies
-* Create models for rendering player, enemies, board, projectiles, etc.
-* Game over condition
+* Major Bugs:
+    * Player out of bounds for top and left
+    * Collision detection for enemies when colliding with other enemies/player
+
+* Minor Bugs:
+    * Fix spread weapon so that it's not only shooting below functionality that works
+    * Make health/score color not match projectile color
+
+* Future Features:
+    * Add ammo counter
+    * Add time survived to score
+    * Add new types of enemies
+    * Add pause
+        * Implement requestAnimationFrame vs setTimeout probably will be necessary
+    * Try to make enemies spawn out of bounds
+        * Then they cannot move out of bounds once inside screen
+    * Create models for rendering player, enemies, board, projectiles, etc.
+    * Add styling to make game look presentable
+    * Game over condition
+        * Needs enemy/player collision to work properly
 
 ## Background
 This game is a 2d top-down shoot'em up game, in which the goal is to survive as long as possible until you are defeated. To break this game down,

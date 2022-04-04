@@ -19,6 +19,7 @@ class Game{
         this.projectiles = [];
         this.player = new Player(this);
         this.addEnemies();  
+        this.score = 0;
     }
 
     addObject(obj){
@@ -34,6 +35,7 @@ class Game{
         }
     }
 
+    //refactor so that enemies spawn out of bounds
     randomPosition(){
         let x = Math.floor(Math.random() * DIM_X);
         let y = Math.floor(Math.random() * DIM_Y);
@@ -71,6 +73,7 @@ class Game{
                         }
                     }
 
+                    //Need to work on player/enemy + enemy/enemy collision
                     else if((objs[i] instanceof Player && objs[j] instanceof Enemy)
                     || (objs[i] instanceof Enemy && objs[j] instanceof Player)){
                         // this.player.health -= 5;
@@ -93,25 +96,31 @@ class Game{
     checkEnemy(enemy, projectile){
         if(projectile instanceof Single){
             enemy.health -= DAMAGE[0];
+            this.score += 30;
         }
 
         else if(projectile instanceof Spread){
             enemy.health -= DAMAGE[1];
+            this.score += 20;
         }
 
         else if(projectile instanceof Ray){
             enemy.health -= DAMAGE[2];
+            this.score += 40;
         }
 
         else if(projectile instanceof Big){
             enemy.health -= DAMAGE[3];
+            this.score += 50;
         }
         else{
             enemy.health -= DAMAGE[4];
+            this.score += 10;
         }
 
         if(enemy.health <= 0){
             this.remove(enemy);
+            this.score += 100;
         }
     }
 
@@ -135,6 +144,8 @@ class Game{
                     this.createExplosion(objs[i])
                 }
             }
+            //refactor so that if enemies spawn out of bounds, they can enter,
+            //but not leave
             else if(objs[i] instanceof Enemy){
                 if(this.checkTop(objs[i]) || this.checkDown(objs[i])){
                     objs[i].vel[1] *= -1;
@@ -144,6 +155,7 @@ class Game{
                 }
             }
             else if(objs[i] instanceof Player){
+                //Out of bounds only works for down and right
                 if(this.checkTop(objs[i])){
                     objs[i].pos[1] += objs[i].vel[1] + 1;
                     objs[i].vel[1] = 0;
@@ -210,6 +222,14 @@ class Game{
         this.move();
         this.checkCollisions();
         this.outOfBounds();
+        this.addNewEnemy();
+    }
+
+    addNewEnemy(){
+        while(this.enemies.length < NUM_ENEMIES){
+            let newEnemy = new Enemy(this.randomPosition());
+            this.enemies.push(newEnemy);
+        }
     }
 
     draw(ctx){
@@ -220,6 +240,10 @@ class Game{
         this.allObjects().forEach(obj => {
             obj.draw(ctx);
         })
+        //Figure out how to make text not match last fired projectile's color
+        ctx.font ="16px Arial";
+        ctx.fillText("Score: " + this.score, 10, 20)
+        ctx.fillText("Health: " + this.player.health, 10, DIM_Y - 20)
     }
 
     move(){

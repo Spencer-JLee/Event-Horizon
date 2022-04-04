@@ -6,7 +6,7 @@ class GameView{
         this.ctx = ctx;
         this.player = this.game.player;
     }
-
+    //refactor for requestAnimationFrame
     start(){
         this.bindKeyHandlers();
         setInterval(this.game.step.bind(this.game), 16);
