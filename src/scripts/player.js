@@ -8,7 +8,7 @@ import Big from "./big"
 const RADIUS = 10;
 const COLOR = "blue";
 const WEAPONS = ["single", "spread", "ray", "big"]
-const SPEEDS = [15, 15, 20, 3];
+const SPEEDS = [10, 10, 20, 3];
 const MAXSPEED = 7;
 
 
@@ -36,8 +36,8 @@ class Player extends MovingObject{
         
         if(this.weaponIdx === 1){
             proj = new Spread(this.pos, projVel, this.game);
-            let vel1 = this.calcVel1(projVel);
-            let vel2 = this.calcVel2(projVel);
+            let vel1 = this.calcVel(projVel, "left");
+            let vel2 = this.calcVel(projVel, "right");
             let proj1 = new Spread(this.pos, vel1, this.game);
             let proj2 = new Spread(this.pos, vel2, this.game);
             this.game.addObject(proj1);
@@ -64,22 +64,23 @@ class Player extends MovingObject{
 
         return [xVel, yVel];
     }
-    //check math for calcVel1 and calcVel2 to ensure that spread works properly
-    calcVel1(projVel){
+    
+    calcVel(projVel, direction){
         let unitSpeedX = projVel[0] / SPEEDS[this.weaponIdx];
-        let theta = Math.asin(unitSpeedX);
-        let newVelX = SPEEDS[this.weaponIdx] * Math.sin(theta + (Math.PI / 12));
-        let newVelY = SPEEDS[this.weaponIdx] * Math.cos(theta + (Math.PI / 12));
+        let unitSpeedY = projVel[1] / SPEEDS[this.weaponIdx];
+        let thetaX = Math.asin(unitSpeedX);
+        let thetaY = Math.acos(unitSpeedY);
+        let newVelX, newVelY;
+        if(direction === "right"){
+            newVelX = SPEEDS[this.weaponIdx] * Math.sin(thetaX + (Math.PI / 12));
+            newVelY = SPEEDS[this.weaponIdx] * Math.cos(thetaY + (Math.PI / 12));
+        }
+        else if(direction === "left"){
+            newVelX = SPEEDS[this.weaponIdx] * Math.sin(thetaX - (Math.PI / 12));
+            newVelY = SPEEDS[this.weaponIdx] * Math.cos(thetaY - (Math.PI / 12));
+        }
         
-        return [newVelX, newVelY];
-    }
-
-    calcVel2(projVel){
-        let unitSpeedX = projVel[0] / SPEEDS[this.weaponIdx];
-        let theta = Math.asin(unitSpeedX);
-        let newVelX = SPEEDS[this.weaponIdx] * Math.sin(theta - (Math.PI / 12));
-        let newVelY = SPEEDS[this.weaponIdx] * Math.cos(theta - (Math.PI / 12));
-
+        
         return [newVelX, newVelY];
     }
 

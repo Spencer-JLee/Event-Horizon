@@ -5,8 +5,6 @@
     * Collision detection for enemies when colliding with other enemies
 
 * Minor Bugs:
-    * Fix spread weapon so that it's not only shooting below functionality that works
-    * Make health/score color not match projectile color
 
 * Future Features:
     * Add ammo counter

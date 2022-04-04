@@ -258,7 +258,7 @@ class Game{
         })
         //Figure out how to make text not match last fired projectile's color
         ctx.font ="16px Arial";
-        // ctx.fillStyle("black")
+        ctx.fillStyle = "black";
         ctx.fillText("Score: " + this.score, 10, 20)
         ctx.fillText("Health: " + this.player.health, 10, DIM_Y - 20)
     }
