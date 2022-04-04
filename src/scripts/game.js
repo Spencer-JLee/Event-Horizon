@@ -86,7 +86,7 @@ class Game{
 
                         let maxAmmo = this.player.maxAmmo[this.player.weaponIdx];
 
-                        this.player.ammo[this.player.weaponIdx] += maxAmmo * 0.1;
+                        this.player.ammo[this.player.weaponIdx] += maxAmmo * 0.2;
                         if(this.player.ammo[this.player.weaponIdx] > maxAmmo){
                             this.player.ammo[this.player.weaponIdx] = maxAmmo;
                         }
@@ -236,7 +236,7 @@ class Game{
             for(let i = 0; i < 6; i++){
                 let proj = new Projectile(obj.pos, 
                     [Math.random() * 2 - 1, Math.random() * 2 - 1],
-                    2, "pink", this);
+                    2, "blue", this);
                 this.projectiles.push(proj);
             }
         }

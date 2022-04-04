@@ -3,15 +3,12 @@
 ## TODO
 * Major Bugs:
     * Collision detection for enemies when colliding with other enemies
-    * Fix ammunition not updating properly
-    * Fix ammunition destroying all when picking up one
 
 * Minor Bugs:
 
 * Future Features:
     * Add time survived to score
     * Add new types of enemies
-    * Add pause
     * Try to make enemies spawn out of bounds
         * Then they cannot move out of bounds once inside screen
     * Create models for rendering player, enemies, board, projectiles, etc.

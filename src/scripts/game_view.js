@@ -5,6 +5,7 @@ class GameView{
         this.game = new Game();
         this.ctx = ctx;
         this.player = this.game.player;
+        this.paused = false;
     }
     
     start(){
@@ -37,6 +38,11 @@ class GameView{
             case 'e':
                 this.player.forwardWeapon();
                 break;
+            case 'p':
+                this.paused = !this.paused;
+                requestAnimationFrame(this.render.bind(this));
+                break;
+                
         }
     }
 
@@ -45,9 +51,11 @@ class GameView{
     }
 
     render(){
-        this.game.step();
-        this.game.draw(this.ctx);
-        requestAnimationFrame(this.render.bind(this));
+        if(!(this.paused)){
+            this.game.step();
+            this.game.draw(this.ctx);
+            requestAnimationFrame(this.render.bind(this));
+        }
     }
 }
 
