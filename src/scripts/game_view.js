@@ -6,13 +6,10 @@ class GameView{
         this.ctx = ctx;
         this.player = this.game.player;
     }
-    //refactor for requestAnimationFrame
+    
     start(){
         this.bindKeyHandlers();
-        setInterval(this.game.step.bind(this.game), 16);
-        setInterval(() => {
-            this.game.draw.bind(this.game)(this.ctx);
-        }, 16);
+        requestAnimationFrame(this.render.bind(this));
     }
 
     bindKeyHandlers(){
@@ -45,6 +42,12 @@ class GameView{
 
     fire(e){
         this.player.shoot([e.clientX, e.clientY]);
+    }
+
+    render(){
+        this.game.step();
+        this.game.draw(this.ctx);
+        requestAnimationFrame(this.render.bind(this));
     }
 }
 

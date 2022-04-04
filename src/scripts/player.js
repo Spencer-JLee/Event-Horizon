@@ -7,8 +7,9 @@ import Big from "./big"
 
 const RADIUS = 10;
 const COLOR = "blue";
-const WEAPONS = ["single", "spread", "ray", "big"]
+const WEAPONS = ["Peashooter", "Tri-Shot", "Blaster", "Splitter"];
 const SPEEDS = [10, 10, 20, 3];
+const AMMO = [100, 75, 50, 25];
 const MAXSPEED = 7;
 
 
@@ -17,6 +18,8 @@ class Player extends MovingObject{
         super([512, 384], [0, 0], RADIUS, COLOR, game);
         this.weaponIdx = 0;
         this.health = 100;
+        this.weapons = WEAPONS;
+        this.ammo = AMMO;
     }
 
     travel(velocity){
@@ -31,28 +34,31 @@ class Player extends MovingObject{
     }
 
     shoot(eventPos){
-        let projVel = this.getVel(eventPos, this.pos);
-        let proj;
-        
-        if(this.weaponIdx === 1){
-            proj = new Spread(this.pos, projVel, this.game);
-            let vel1 = this.calcVel(projVel, "left");
-            let vel2 = this.calcVel(projVel, "right");
-            let proj1 = new Spread(this.pos, vel1, this.game);
-            let proj2 = new Spread(this.pos, vel2, this.game);
-            this.game.addObject(proj1);
-            this.game.addObject(proj2);
+        if(this.ammo[this.weaponIdx] > 0){
+            let projVel = this.getVel(eventPos, this.pos);
+            let proj;
+            
+            if(this.weaponIdx === 1){
+                proj = new Spread(this.pos, projVel, this.game);
+                let vel1 = this.calcVel(projVel, "left");
+                let vel2 = this.calcVel(projVel, "right");
+                let proj1 = new Spread(this.pos, vel1, this.game);
+                let proj2 = new Spread(this.pos, vel2, this.game);
+                this.game.addObject(proj1);
+                this.game.addObject(proj2);
+            }
+            else if(this.weaponIdx === 2){
+                proj = new Ray(this.pos, projVel, this.game);
+            }
+            else if(this.weaponIdx === 3){
+                proj = new Big(this.pos, projVel, this.game);
+            }
+            else{
+                proj = new Single(this.pos, projVel, this.game);
+            }
+            this.game.addObject(proj);
+            this.ammo[this.weaponIdx] -= 1;
         }
-        else if(this.weaponIdx === 2){
-            proj = new Ray(this.pos, projVel, this.game);
-        }
-        else if(this.weaponIdx === 3){
-            proj = new Big(this.pos, projVel, this.game);
-        }
-        else{
-            proj = new Single(this.pos, projVel, this.game);
-        }
-        this.game.addObject(proj);
     }
 
     getVel(clickPos, playerPos){

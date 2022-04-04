@@ -1,5 +1,5 @@
 import Enemy from "./enemy"
-import Player from "./player"
+import Player, { WEAPONS } from "./player"
 import Projectile from "./projectile"
 import Single from "./single"
 import Spread from "./spread"
@@ -76,16 +76,16 @@ class Game{
                     || (objs[i] instanceof Enemy && objs[j] instanceof Player)){
                         this.resetPositions(objs[i]);
                         this.resetPositions(objs[j])
-                        // this.player.health -= 5;
-                        // if(this.player.health <= 0){
-                        //     alert("GAME OVER");
-                        // }
+                        this.player.health -= 1;
+                        if(this.player.health <= 0){
+                            alert("GAME OVER");
+                        }
                     }
-                    //enemies after colliding stick together and fly off screen
-                    // else if(objs[i] instanceof Enemy && objs[j] instanceof Enemy){
-                    //     this.resetPositions(objs[i]);
-                    //     this.resetPositions(objs[j]);
-                    // }
+                    // enemies after colliding stick together and fly off screen
+                    else if(objs[i] instanceof Enemy && objs[j] instanceof Enemy){
+                        // this.resetPositions(objs[i]);
+                        // this.resetPositions(objs[j]);
+                    }
                     else{
 
                     }
@@ -97,16 +97,16 @@ class Game{
 
     resetPositions(obj){
         if(obj.vel[0] < 0){
-            obj.pos[0] -= obj.vel[0] - 1;
+            obj.pos[0] -= obj.vel[0] - 5;
         }
         else{
-            obj.pos[0] -= obj.vel[0] + 1;
+            obj.pos[0] -= obj.vel[0] + 5;
         }
         if(obj.vel[1] < 0){
-            obj.pos[1] -= obj.vel[1] - 1;
+            obj.pos[1] -= obj.vel[1] - 5;
         }
         else{
-            obj.pos[1] -= obj.vel[1] + 1;
+            obj.pos[1] -= obj.vel[1] + 5;
         }
     }
 
@@ -256,11 +256,13 @@ class Game{
         this.allObjects().forEach(obj => {
             obj.draw(ctx);
         })
-        //Figure out how to make text not match last fired projectile's color
+
         ctx.font ="16px Arial";
         ctx.fillStyle = "black";
         ctx.fillText("Score: " + this.score, 10, 20)
         ctx.fillText("Health: " + this.player.health, 10, DIM_Y - 20)
+        ctx.fillText(`${this.player.weapons[this.player.weaponIdx]} Ammo: ${this.player.ammo[this.player.weaponIdx]}`, 
+        DIM_X - 200, DIM_Y - 20);
     }
 
     move(){
