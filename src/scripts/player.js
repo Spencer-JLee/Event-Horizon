@@ -9,7 +9,7 @@ const RADIUS = 10;
 const COLOR = "blue";
 const WEAPONS = ["Peashooter", "Tri-Shot", "Blaster", "Splitter"];
 const SPEEDS = [10, 10, 20, 3];
-const AMMO = [100, 75, 50, 25];
+const AMMO = [200, 100, 50, 25];
 const MAXSPEED = 7;
 
 
@@ -19,7 +19,7 @@ class Player extends MovingObject{
         this.weaponIdx = 0;
         this.health = 100;
         this.weapons = WEAPONS;
-        this.ammo = [100, 75, 50, 25];
+        this.ammo = [200, 100, 50, 25];
         this.maxAmmo = AMMO;
     }
 

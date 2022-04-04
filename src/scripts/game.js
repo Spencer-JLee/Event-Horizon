@@ -23,6 +23,7 @@ class Game{
         this.player = new Player(this);
         this.addEnemies();  
         this.score = 0;
+        this.gameOver = false;
     }
 
     addObject(obj){
@@ -62,6 +63,9 @@ class Game{
                         if(objs[i] instanceof Enemy){
                             this.checkEnemy(objs[i], objs[j]);
                         }
+                        else if(objs[i] instanceof Ray){
+                            
+                        }
                         else{
                             this.remove(objs[i]);
                             this.createExplosion(objs[i]);
@@ -69,6 +73,9 @@ class Game{
 
                         if(objs[j] instanceof Enemy){
                             this.checkEnemy(objs[j], objs[i]);
+                        }
+                        else if(objs[j] instanceof Ray){
+                            
                         }
                         else{
                             this.remove(objs[j]);
@@ -113,7 +120,8 @@ class Game{
                         this.resetPositions(objs[j])
                         this.player.health -= 1;
                         if(this.player.health <= 0){
-                            alert("GAME OVER");
+                            // alert("GAME OVER");
+                            this.gameOver = true;
                         }
                     }
                     // enemies after colliding stick together and fly off screen
@@ -235,7 +243,7 @@ class Game{
         if(obj instanceof Big){
             for(let i = 0; i < 6; i++){
                 let proj = new Projectile(obj.pos, 
-                    [Math.random() * 2 - 1, Math.random() * 2 - 1],
+                    [Math.random() * 6 - 3, Math.random() * 6 - 3],
                     2, "blue", this);
                 this.projectiles.push(proj);
             }
@@ -244,11 +252,11 @@ class Game{
 
     createPickup(pos){
         let rng = Math.random() * 100;
-        if(rng < 50){
+        if(rng < 10){
             let health = new Health(pos, this);
             this.pickups.push(health);
         }
-        else if(rng >= 50){
+        else if(rng >= 80){
             let ammunition = new Ammunition(pos, this);
             this.pickups.push(ammunition);
         }
@@ -314,6 +322,10 @@ class Game{
         ctx.fillText("Health: " + this.player.health, 10, DIM_Y - 20)
         ctx.fillText(`${this.player.weapons[this.player.weaponIdx]} Ammo: ${this.player.ammo[this.player.weaponIdx]}`, 
         DIM_X - 200, DIM_Y - 20);
+        if(this.gameOver){
+            ctx.font = "48px Arial"
+            ctx.fillText("GAME OVER", DIM_X / 2 - 175, DIM_Y / 2);
+        }
     }
 
     move(){

@@ -71,7 +71,7 @@ This project will be implemented with the following technologies:
 * Finish any of the previous day's work if not completed
 * Focus on adding more weapons and enemies to the player character
 * Add controls based upon the new features
-* Add health and ammo counters to the enemies
+* Add health and ammo counters
 * Determine how/if health and ammo are replenished
 ### Wednesday
 * Finish any of the previous day's work if not completed

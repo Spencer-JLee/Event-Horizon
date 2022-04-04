@@ -51,7 +51,7 @@ class GameView{
     }
 
     render(){
-        if(!(this.paused)){
+        if(!(this.paused) && !(this.game.gameOver)){
             this.game.step();
             this.game.draw(this.ctx);
             requestAnimationFrame(this.render.bind(this));
