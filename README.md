@@ -2,8 +2,7 @@
 
 ## TODO
 * Major Bugs:
-    * Player out of bounds for top and left
-    * Collision detection for enemies when colliding with other enemies/player
+    * Collision detection for enemies when colliding with other enemies
 
 * Minor Bugs:
     * Fix spread weapon so that it's not only shooting below functionality that works

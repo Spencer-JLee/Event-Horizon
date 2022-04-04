@@ -1,7 +1,7 @@
 import Projectile from "./projectile";
 
 const RADIUS = 2;
-const COLOR = "orange";
+const COLOR = "red";
 
 class Spread extends Projectile{
     constructor(pos, vel, game){

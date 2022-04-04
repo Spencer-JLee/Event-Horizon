@@ -6,7 +6,7 @@ import Ray from "./ray"
 import Big from "./big"
 
 const RADIUS = 10;
-const COLOR = "green";
+const COLOR = "blue";
 const WEAPONS = ["single", "spread", "ray", "big"]
 const SPEEDS = [15, 15, 20, 3];
 const MAXSPEED = 7;
@@ -31,7 +31,7 @@ class Player extends MovingObject{
     }
 
     shoot(eventPos){
-        let projVel = this.getVel(eventPos, this.pos)
+        let projVel = this.getVel(eventPos, this.pos);
         let proj;
         
         if(this.weaponIdx === 1){

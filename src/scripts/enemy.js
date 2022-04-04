@@ -1,11 +1,11 @@
 import MovingObject from "./moving_object";
 
 const RADIUS = 10;
-const COLOR = 'red';
+const COLOR = 'orange';
 
 class Enemy extends MovingObject{
-    constructor(pos){
-        super(pos, [1, 1], RADIUS, COLOR);
+    constructor(pos, game){
+        super(pos, [1, 1], RADIUS, COLOR, game);
         this.health = 10;
     }
 

@@ -72,17 +72,19 @@ class Game{
                             this.createExplosion(objs[j]);
                         }
                     }
-
-                    //Need to work on player/enemy + enemy/enemy collision
                     else if((objs[i] instanceof Player && objs[j] instanceof Enemy)
                     || (objs[i] instanceof Enemy && objs[j] instanceof Player)){
+                        this.resetPositions(objs[i]);
+                        this.resetPositions(objs[j])
                         // this.player.health -= 5;
                         // if(this.player.health <= 0){
                         //     alert("GAME OVER");
                         // }
                     }
+                    //enemies after colliding stick together and fly off screen
                     // else if(objs[i] instanceof Enemy && objs[j] instanceof Enemy){
-
+                    //     this.resetPositions(objs[i]);
+                    //     this.resetPositions(objs[j]);
                     // }
                     else{
 
@@ -93,29 +95,44 @@ class Game{
         }
     }
 
+    resetPositions(obj){
+        if(obj.vel[0] < 0){
+            obj.pos[0] -= obj.vel[0] - 1;
+        }
+        else{
+            obj.pos[0] -= obj.vel[0] + 1;
+        }
+        if(obj.vel[1] < 0){
+            obj.pos[1] -= obj.vel[1] - 1;
+        }
+        else{
+            obj.pos[1] -= obj.vel[1] + 1;
+        }
+    }
+
     checkEnemy(enemy, projectile){
         if(projectile instanceof Single){
             enemy.health -= DAMAGE[0];
-            this.score += 30;
+            this.score += DAMAGE[0] * 10;
         }
 
         else if(projectile instanceof Spread){
             enemy.health -= DAMAGE[1];
-            this.score += 20;
+            this.score += DAMAGE[1] * 10;
         }
 
         else if(projectile instanceof Ray){
             enemy.health -= DAMAGE[2];
-            this.score += 40;
+            this.score += DAMAGE[2] * 10;
         }
 
         else if(projectile instanceof Big){
             enemy.health -= DAMAGE[3];
-            this.score += 50;
+            this.score += DAMAGE[3] * 10;
         }
         else{
             enemy.health -= DAMAGE[4];
-            this.score += 10;
+            this.score += DAMAGE[4] * 10;
         }
 
         if(enemy.health <= 0){
@@ -155,9 +172,8 @@ class Game{
                 }
             }
             else if(objs[i] instanceof Player){
-                //Out of bounds only works for down and right
                 if(this.checkTop(objs[i])){
-                    objs[i].pos[1] += objs[i].vel[1] + 1;
+                    objs[i].pos[1] -= objs[i].vel[1] - 1;
                     objs[i].vel[1] = 0;
                 }
                 else if(this.checkDown(objs[i])){
@@ -165,7 +181,7 @@ class Game{
                     objs[i].vel[1] = 0;
                 }
                 else if(this.checkLeft(objs[i])){
-                    objs[i].pos[0] += objs[i].vel[0] + 1;
+                    objs[i].pos[0] -= objs[i].vel[0] - 1;
                     objs[i].vel[0] = 0;
                 }
                 else if(this.checkRight(objs[i])){
@@ -188,7 +204,7 @@ class Game{
     }
 
     checkTop(obj){
-        if(obj.pos[1] + obj.vel[1] < obj.radius + 2){
+        if(obj.pos[1] + obj.vel[1] < obj.radius + 1){
             return true;
         }
     }
@@ -213,7 +229,7 @@ class Game{
 
     findPlayer(){
         this.enemies.forEach(enemy =>{
-            enemy.findPlayer(this.player);
+            enemy.findPlayer(this.player, this);
         })
     }
 
@@ -242,6 +258,7 @@ class Game{
         })
         //Figure out how to make text not match last fired projectile's color
         ctx.font ="16px Arial";
+        // ctx.fillStyle("black")
         ctx.fillText("Score: " + this.score, 10, 20)
         ctx.fillText("Health: " + this.player.health, 10, DIM_Y - 20)
     }
