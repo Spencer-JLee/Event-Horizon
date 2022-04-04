@@ -24,6 +24,11 @@ class Game{
         this.addEnemies();  
         this.score = 0;
         this.gameOver = false;
+        this.fast = false;
+        this.doubleHealth = false;
+        this.doubleDamage = false;
+        this.faster = false;
+        this.lessPickup = false;
     }
 
     addObject(obj){
@@ -93,7 +98,13 @@ class Game{
 
                         let maxAmmo = this.player.maxAmmo[this.player.weaponIdx];
 
-                        this.player.ammo[this.player.weaponIdx] += maxAmmo * 0.2;
+                        if(this.lessPickup){
+                            this.player.ammo[this.player.weaponIdx] += maxAmmo * 0.1;
+                        }
+                        else{
+                            this.player.ammo[this.player.weaponIdx] += maxAmmo * 0.2;
+                        }
+                        
                         if(this.player.ammo[this.player.weaponIdx] > maxAmmo){
                             this.player.ammo[this.player.weaponIdx] = maxAmmo;
                         }
@@ -107,7 +118,14 @@ class Game{
                         else if(objs[j] instanceof Health){
                             this.remove(objs[j]);
                         }
-                        this.player.health += 10;
+
+                        if(this.lessPickup){
+                            this.player.health += 5;
+                        }
+                        else{
+                            this.player.health += 10;
+                        }
+                        
 
                         if(this.player.health > 100){
                             this.player.health = 100;
@@ -118,7 +136,14 @@ class Game{
                     || (objs[i] instanceof Enemy && objs[j] instanceof Player)){
                         this.resetPositions(objs[i]);
                         this.resetPositions(objs[j])
-                        this.player.health -= 1;
+
+                        if(this.doubleDamage){
+                            this.player.health -= 2;
+                        }
+                        else{
+                            this.player.health -= 1;
+                        }
+                        
                         if(this.player.health <= 0){
                             // alert("GAME OVER");
                             this.gameOver = true;
@@ -297,7 +322,48 @@ class Game{
         this.move();
         this.checkCollisions();
         this.outOfBounds();
+        this.increaseDifficulty();
+        this.changeSpeed();
+        this.increaseHealth();
         this.addNewEnemy();
+    }
+
+    increaseDifficulty(){
+        if(this.score > 5000 && !this.doubleDamage){
+            this.doubleDamage = true;
+        }
+        else if(this.score <= 5000 && this.score > 4000 && !this.lessPickup){
+            this.lessPickup = true;
+        } 
+        else if(this.score <= 4000 && this.score > 3000 && !this.faster){
+            this.faster = true;
+        }
+        else if(this.score <= 3000 && this.score > 2000 && !this.doubleHealth){
+            this.doubleHealth = true;  
+        }
+        else if(this.score <= 2000 && this.score > 1000 && !this.fast){
+            this.fast = true;
+        }
+    }
+
+    changeSpeed(){
+        this.enemies.forEach(enemy =>{
+            if(this.fast && !this.faster){
+                enemy.speedIdx = 1;
+            }
+            else if(this.fast && this.faster){
+                enemy.speedIdx = 2;
+            }
+        });
+    }
+
+    increaseHealth(){
+        this.enemies.forEach(enemy =>{
+            if(this.doubleHealth && !enemy.doubledHealth){
+                enemy.health *= 2;
+                enemy.doubledHealth = true;
+            }
+        })
     }
 
     addNewEnemy(){
@@ -322,6 +388,26 @@ class Game{
         ctx.fillText("Health: " + this.player.health, 10, DIM_Y - 20)
         ctx.fillText(`${this.player.weapons[this.player.weaponIdx]} Ammo: ${this.player.ammo[this.player.weaponIdx]}`, 
         DIM_X - 200, DIM_Y - 20);
+
+        if(this.fast){
+            ctx.fillText("Enemy Speed Up", DIM_X - 200, 20);
+        }
+
+        if(this.doubleHealth){
+            ctx.fillText("Double Enemy Health", DIM_X - 200, 40);
+        }
+
+        if(this.faster){
+            ctx.fillText("Enemy Speed Up 2", DIM_X - 200, 60);
+        }
+
+        if(this.lessPickup){
+            ctx.fillText("Less From Pickups", DIM_X - 200, 80);
+        }
+
+        if(this.doubleDamage){
+            ctx.fillText("Double Enemy Damage", DIM_X - 200, 100);
+        }
         if(this.gameOver){
             ctx.font = "48px Arial"
             ctx.fillText("GAME OVER", DIM_X / 2 - 175, DIM_Y / 2);

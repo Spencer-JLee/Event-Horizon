@@ -8,7 +8,6 @@
 
 * Future Features:
     * Add time survived to score
-    * Add new types of enemies
     * Try to make enemies spawn out of bounds
         * Then they cannot move out of bounds once inside screen
     * Create models for rendering player, enemies, board, projectiles, etc.
