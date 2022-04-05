@@ -289,7 +289,7 @@ class Game{
             for(let i = 0; i < 6; i++){
                 let proj = new Projectile(obj.pos, 
                     [Math.random() * 6 - 3, Math.random() * 6 - 3],
-                    2, "blue", this);
+                    2, "white", this);
                 this.projectiles.push(proj);
             }
         }
@@ -297,11 +297,11 @@ class Game{
 
     createPickup(pos){
         let rng = Math.random() * 100;
-        if(rng < 10){
+        if(rng < 50){
             let health = new Health(pos, this);
             this.pickups.push(health);
         }
-        else if(rng >= 80){
+        else if(rng >= 50){
             let ammunition = new Ammunition(pos, this);
             this.pickups.push(ammunition);
         }
