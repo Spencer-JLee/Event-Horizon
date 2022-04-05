@@ -149,14 +149,16 @@ class Game{
                     }
                     // enemies after colliding stick together and fly off screen
                     else if(objs[i] instanceof Enemy && objs[j] instanceof Enemy){
-                        this.resetPositions(objs[i]);
-                        this.resetPositions(objs[j]);
-                        objs[i].hitstun = true;
-                        objs[j].hitstun = true;
-                        objs[i].vel[0] *= -0.5;
-                        objs[j].vel[0] *= 0.5;
-                        objs[i].vel[1] *= -0.5;
-                        objs[j].vel[1] *= 0.5;
+                        let enemy1 = objs[i];
+                        let enemy2 = objs[j];
+                        this.resetPositions(enemy1);
+                        this.resetPositions(enemy2);
+                        enemy1.hitstun = true;
+                        enemy2.hitstun = true;
+                        enemy1.vel[0] *= -0.25 / enemy1.speed[enemy1.speedIdx];
+                        enemy2.vel[0] *= 0.25 / enemy2.speed[enemy2.speedIdx];
+                        enemy1.vel[1] *= -0.25 / enemy1.speed[enemy1.speedIdx];
+                        enemy2.vel[1] *= 0.25 / enemy2.speed[enemy2.speedIdx];
                     }
                     else{
 
@@ -318,7 +320,7 @@ class Game{
     findPlayer(){
         this.enemies.forEach(enemy =>{
             if(enemy.hitstun){
-                setTimeout(() => enemy.hitstun = false, 100);
+                setTimeout(() => enemy.hitstun = false, 50);
             }
             else{
                 enemy.findPlayer(this.player, this);
