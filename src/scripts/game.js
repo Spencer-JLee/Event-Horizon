@@ -8,6 +8,9 @@ import Big from "./big"
 import Ammunition from "./ammunition"
 import Health from "./health"
 
+
+const background = new Image();
+background.src = "../../images/stage-back.png"
 const DIM_X = 1024;
 const DIM_Y = 768;
 const NUM_ENEMIES = 10;
@@ -396,16 +399,18 @@ class Game{
     }
 
     draw(ctx){
-        ctx.clearRect(0, 0, DIM_X, DIM_Y);
-        ctx.fillStyle = "grey"
-        ctx.fillRect(0, 0, DIM_X, DIM_Y);
+        //256 width, 320 height;
+        // ctx.clearRect(0, 0, DIM_X, DIM_Y);
+        // ctx.fillStyle = "grey"
+        // ctx.fillRect(0, 0, DIM_X, DIM_Y);
+        ctx.drawImage(background, 0, 60, 256, 192, 0, 0, DIM_X, DIM_Y);
 
         this.allObjects().forEach(obj => {
             obj.draw(ctx);
         })
 
         ctx.font ="16px Arial";
-        ctx.fillStyle = "black";
+        ctx.fillStyle = "white";
         ctx.fillText("Score: " + this.score, 10, 20)
         ctx.fillText("Health: " + this.player.health, 10, DIM_Y - 20)
         ctx.fillText(`${this.player.weapons[this.player.weaponIdx]} Ammo: ${this.player.ammo[this.player.weaponIdx]}`, 
