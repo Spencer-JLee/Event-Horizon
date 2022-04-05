@@ -154,9 +154,9 @@ class Game{
                         objs[i].hitstun = true;
                         objs[j].hitstun = true;
                         objs[i].vel[0] *= -0.5;
-                        // objs[j].vel[0] *= -1;
+                        objs[j].vel[0] *= 0.5;
                         objs[i].vel[1] *= -0.5;
-                        // objs[j].vel[1] *= -1;
+                        objs[j].vel[1] *= 0.5;
                     }
                     else{
 
