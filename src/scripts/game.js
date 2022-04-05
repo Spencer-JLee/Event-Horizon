@@ -99,10 +99,10 @@ class Game{
                         let maxAmmo = this.player.maxAmmo[this.player.weaponIdx];
 
                         if(this.lessPickup){
-                            this.player.ammo[this.player.weaponIdx] += maxAmmo * 0.1;
+                            this.player.ammo[this.player.weaponIdx] += Math.floor(maxAmmo * 0.1);
                         }
                         else{
-                            this.player.ammo[this.player.weaponIdx] += maxAmmo * 0.2;
+                            this.player.ammo[this.player.weaponIdx] += Math.floor(maxAmmo * 0.2);
                         }
                         
                         if(this.player.ammo[this.player.weaponIdx] > maxAmmo){
@@ -145,7 +145,6 @@ class Game{
                         }
                         
                         if(this.player.health <= 0){
-                            // alert("GAME OVER");
                             this.gameOver = true;
                         }
                     }
@@ -329,14 +328,14 @@ class Game{
     }
 
     increaseDifficulty(){
-        if(this.score > 5000 && !this.doubleDamage){
-            this.doubleDamage = true;
-        }
-        else if(this.score <= 5000 && this.score > 4000 && !this.lessPickup){
-            this.lessPickup = true;
-        } 
-        else if(this.score <= 4000 && this.score > 3000 && !this.faster){
+        if(this.score > 5000 && !this.faster){
             this.faster = true;
+        }
+        else if(this.score <= 5000 && this.score > 4000 && !this.doubleDamage){
+            this.doubleDamage = true;
+        } 
+        else if(this.score <= 4000 && this.score > 3000 && !this.lessPickup){
+            this.lessPickup = true;
         }
         else if(this.score <= 3000 && this.score > 2000 && !this.doubleHealth){
             this.doubleHealth = true;  
@@ -397,17 +396,18 @@ class Game{
             ctx.fillText("Double Enemy Health", DIM_X - 200, 40);
         }
 
-        if(this.faster){
-            ctx.fillText("Enemy Speed Up 2", DIM_X - 200, 60);
-        }
-
         if(this.lessPickup){
-            ctx.fillText("Less From Pickups", DIM_X - 200, 80);
+            ctx.fillText("Less From Pickups", DIM_X - 200, 60);
         }
 
         if(this.doubleDamage){
-            ctx.fillText("Double Enemy Damage", DIM_X - 200, 100);
+            ctx.fillText("Double Enemy Damage", DIM_X - 200, 80);
         }
+
+        if(this.faster){
+            ctx.fillText("LUDICROUS SPEED", DIM_X - 200, 100);
+        }
+
         if(this.gameOver){
             ctx.font = "48px Arial"
             ctx.fillText("GAME OVER", DIM_X / 2 - 175, DIM_Y / 2);

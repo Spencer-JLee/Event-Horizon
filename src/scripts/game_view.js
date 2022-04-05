@@ -42,6 +42,11 @@ class GameView{
                 this.paused = !this.paused;
                 requestAnimationFrame(this.render.bind(this));
                 break;
+            case 'r':
+                this.game = new Game();
+                this.player = this.game.player;
+                this.paused = false;
+                break;
                 
         }
     }
