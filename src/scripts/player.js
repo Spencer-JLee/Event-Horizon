@@ -5,6 +5,10 @@ import Spread from "./spread";
 import Ray from "./ray"
 import Big from "./big"
 
+const playerRight = new Image();
+playerRight.src = "../../images/playerRight.png"
+const playerLeft = new Image();
+playerLeft.src = "../../images/playerLeft.png"
 const RADIUS = 10;
 const COLOR = "blue";
 const WEAPONS = ["Peashooter", "Tri-Shot", "Blaster", "Splitter"];
@@ -21,6 +25,11 @@ class Player extends MovingObject{
         this.weapons = WEAPONS;
         this.ammo = [200, 100, 50, 25];
         this.maxAmmo = AMMO;
+        this.playerLeft = playerLeft;
+        this.playerRight = playerRight;
+        this.isMoving = false;
+        this.currentFrameIdx = 3;
+        this.frameCount = 0;
     }
 
     travel(velocity){
@@ -101,6 +110,29 @@ class Player extends MovingObject{
         }
         else{
             this.weaponIdx = (this.weaponIdx - 1) % WEAPONS.length;
+        }
+    }
+
+    draw(ctx){
+        if(this.vel[0] !== 0 || this.vel[1] !== 0){
+            this.frameCount++;
+            if(this.frameCount >= 10){
+                this.frameCount = 0;
+                this.currentFrameIdx = (this.currentFrameIdx + 1) % 8;
+            }
+        }
+        else{
+            this.currentFrameIdx = 3;
+        }
+
+        if(this.vel[0] >= 0){
+            ctx.drawImage(this.playerRight, 13, 0 + 26 * this.currentFrameIdx, 26, 26, this.pos[0] - 13, 
+                this.pos[1] - 13, 26, 26);
+            
+        }
+        else if(this.vel[0] < 0){
+            ctx.drawImage(this.playerLeft, 80, 0 + 26 * this.currentFrameIdx, 26, 26, this.pos[0] - 13, 
+                this.pos[1] - 13, 26, 26);
         }
     }
 }

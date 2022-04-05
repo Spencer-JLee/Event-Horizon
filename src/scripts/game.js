@@ -138,13 +138,13 @@ class Game{
 
                         if(objs[i] instanceof Enemy){
                             objs[i].hitstun = true;
-                            objs[i].vel[0] *= -0.25 / objs[i].speed[objs[i].speedIdx];
-                            objs[i].vel[1] *= 0.25 / objs[i].speed[objs[i].speedIdx];
+                            objs[i].vel[0] *= -0.5 / objs[i].speed[objs[i].speedIdx];
+                            objs[i].vel[1] *= -0.5 / objs[i].speed[objs[i].speedIdx];
                         }
-                        else {
+                        else if(objs[j] instanceof Enemy){
                             objs[j].hitstun = true;
-                            objs[j].vel[0] *= -0.25 / objs[j].speed[objs[j].speedIdx];
-                            objs[j].vel[1] *= 0.25 / objs[j].speed[objs[j].speedIdx];
+                            objs[j].vel[0] *= -0.5 / objs[j].speed[objs[j].speedIdx];
+                            objs[j].vel[1] *= -0.5 / objs[j].speed[objs[j].speedIdx];
                         }
 
                         if(this.doubleDamage){
@@ -166,10 +166,10 @@ class Game{
                         this.resetPositions(enemy2);
                         enemy1.hitstun = true;
                         enemy2.hitstun = true;
-                        enemy1.vel[0] *= -0.25 / enemy1.speed[enemy1.speedIdx];
-                        enemy2.vel[0] *= 0.25 / enemy2.speed[enemy2.speedIdx];
-                        enemy1.vel[1] *= -0.25 / enemy1.speed[enemy1.speedIdx];
-                        enemy2.vel[1] *= 0.25 / enemy2.speed[enemy2.speedIdx];
+                        enemy1.vel[0] *= -0.5 / enemy1.speed[enemy1.speedIdx];
+                        enemy2.vel[0] *= 0.5 / enemy2.speed[enemy2.speedIdx];
+                        enemy1.vel[1] *= -0.5 / enemy1.speed[enemy1.speedIdx];
+                        enemy2.vel[1] *= 0.5 / enemy2.speed[enemy2.speedIdx];
                     }
                     else{
 
@@ -182,16 +182,16 @@ class Game{
 
     resetPositions(obj){
         if(obj.vel[0] < 0){
-            obj.pos[0] -= obj.vel[0] - 10;
+            obj.pos[0] -= obj.vel[0] - 1;
         }
         else{
-            obj.pos[0] -= obj.vel[0] + 10;
+            obj.pos[0] -= obj.vel[0] + 1;
         }
         if(obj.vel[1] < 0){
-            obj.pos[1] -= obj.vel[1] - 10;
+            obj.pos[1] -= obj.vel[1] - 1;
         }
         else{
-            obj.pos[1] -= obj.vel[1] + 10;
+            obj.pos[1] -= obj.vel[1] + 1;
         }
     }
 
@@ -331,7 +331,7 @@ class Game{
     findPlayer(){
         this.enemies.forEach(enemy =>{
             if(enemy.hitstun){
-                setTimeout(() => enemy.hitstun = false, 50);
+                setTimeout(() => enemy.hitstun = false, 100);
             }
             else{
                 enemy.findPlayer(this.player, this);
