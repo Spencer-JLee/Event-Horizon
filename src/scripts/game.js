@@ -108,7 +108,6 @@ class Game{
                         if(this.player.ammo[this.player.weaponIdx] > maxAmmo){
                             this.player.ammo[this.player.weaponIdx] = maxAmmo;
                         }
-                        debugger;
                     }
                     else if((objs[i] instanceof Player && objs[j] instanceof Health)
                     || (objs[i] instanceof Health && objs[j] instanceof Player)){
@@ -150,8 +149,14 @@ class Game{
                     }
                     // enemies after colliding stick together and fly off screen
                     else if(objs[i] instanceof Enemy && objs[j] instanceof Enemy){
-                        // this.resetPositions(objs[i]);
-                        // this.resetPositions(objs[j]);
+                        this.resetPositions(objs[i]);
+                        this.resetPositions(objs[j]);
+                        objs[i].hitstun = true;
+                        objs[j].hitstun = true;
+                        objs[i].vel[0] *= -1;
+                        // objs[j].vel[0] *= -1;
+                        objs[i].vel[1] *= -1;
+                        // objs[j].vel[1] *= -1;
                     }
                     else{
 
@@ -312,7 +317,12 @@ class Game{
 
     findPlayer(){
         this.enemies.forEach(enemy =>{
-            enemy.findPlayer(this.player, this);
+            if(enemy.hitstun){
+                setTimeout(() => enemy.hitstun = false, 1000);
+            }
+            else{
+                enemy.findPlayer(this.player, this);
+            }
         })
     }
 

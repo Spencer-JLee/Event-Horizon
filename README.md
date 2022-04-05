@@ -2,9 +2,10 @@
 
 ## TODO
 * Major Bugs:
-    * Collision detection for enemies when colliding with other enemies
+    * Pausing then restarting does not restart the game and causes loss of user controls
 
 * Minor Bugs:
+    * Enemy/enemy collision acts wonky, need to refactor
 
 * Future Features:
     * Add time survived to score

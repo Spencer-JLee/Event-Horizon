@@ -10,6 +10,7 @@ class Enemy extends MovingObject{
         this.speed = [1, 2, 3];
         this.speedIdx = 0;
         this.doubledHealth = false;
+        this.hitstun = false;
     }
 
     findPlayer(player){
