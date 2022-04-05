@@ -153,9 +153,9 @@ class Game{
                         this.resetPositions(objs[j]);
                         objs[i].hitstun = true;
                         objs[j].hitstun = true;
-                        objs[i].vel[0] *= -1;
+                        objs[i].vel[0] *= -0.5;
                         // objs[j].vel[0] *= -1;
-                        objs[i].vel[1] *= -1;
+                        objs[i].vel[1] *= -0.5;
                         // objs[j].vel[1] *= -1;
                     }
                     else{
@@ -318,7 +318,7 @@ class Game{
     findPlayer(){
         this.enemies.forEach(enemy =>{
             if(enemy.hitstun){
-                setTimeout(() => enemy.hitstun = false, 1000);
+                setTimeout(() => enemy.hitstun = false, 100);
             }
             else{
                 enemy.findPlayer(this.player, this);
