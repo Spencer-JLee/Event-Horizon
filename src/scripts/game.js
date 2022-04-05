@@ -134,7 +134,18 @@ class Game{
                     else if((objs[i] instanceof Player && objs[j] instanceof Enemy)
                     || (objs[i] instanceof Enemy && objs[j] instanceof Player)){
                         this.resetPositions(objs[i]);
-                        this.resetPositions(objs[j])
+                        this.resetPositions(objs[j]);
+
+                        if(objs[i] instanceof Enemy){
+                            objs[i].hitstun = true;
+                            objs[i].vel[0] *= -0.25 / objs[i].speed[objs[i].speedIdx];
+                            objs[i].vel[1] *= 0.25 / objs[i].speed[objs[i].speedIdx];
+                        }
+                        else {
+                            objs[j].hitstun = true;
+                            objs[j].vel[0] *= -0.25 / objs[j].speed[objs[j].speedIdx];
+                            objs[j].vel[1] *= 0.25 / objs[j].speed[objs[j].speedIdx];
+                        }
 
                         if(this.doubleDamage){
                             this.player.health -= 2;
@@ -171,16 +182,16 @@ class Game{
 
     resetPositions(obj){
         if(obj.vel[0] < 0){
-            obj.pos[0] -= obj.vel[0] - 5;
+            obj.pos[0] -= obj.vel[0] - 10;
         }
         else{
-            obj.pos[0] -= obj.vel[0] + 5;
+            obj.pos[0] -= obj.vel[0] + 10;
         }
         if(obj.vel[1] < 0){
-            obj.pos[1] -= obj.vel[1] - 5;
+            obj.pos[1] -= obj.vel[1] - 10;
         }
         else{
-            obj.pos[1] -= obj.vel[1] + 5;
+            obj.pos[1] -= obj.vel[1] + 10;
         }
     }
 
