@@ -399,10 +399,6 @@ class Game{
     }
 
     draw(ctx){
-        //256 width, 320 height;
-        // ctx.clearRect(0, 0, DIM_X, DIM_Y);
-        // ctx.fillStyle = "grey"
-        // ctx.fillRect(0, 0, DIM_X, DIM_Y);
         ctx.drawImage(background, 0, 60, 256, 192, 0, 0, DIM_X, DIM_Y);
 
         this.allObjects().forEach(obj => {
