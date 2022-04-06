@@ -409,7 +409,7 @@ class Game{
             obj.draw(ctx);
         })
 
-        ctx.font ="16px Arial";
+        ctx.font ="18px ArcadeClassic";
         ctx.fillStyle = "white";
         ctx.fillText("Score: " + this.score, 10, 20)
         ctx.fillText("Health: " + this.player.health, 10, DIM_Y - 20)
@@ -437,8 +437,8 @@ class Game{
         }
 
         if(this.gameOver){
-            ctx.font = "48px Arial"
-            ctx.fillText("GAME OVER", DIM_X / 2 - 175, DIM_Y / 2);
+            ctx.font = "48px ArcadeClassic"
+            ctx.fillText("GAME OVER", DIM_X / 2 - 100, DIM_Y / 2);
         }
     }
 

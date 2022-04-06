@@ -5,15 +5,16 @@ body {
   display: grid;
   height: 100vh;
   grid-template: auto 1fr auto/auto 1fr auto;
-  background-color: #12539a;
-  font-family: system-ui, sans-serif;
+  background-image: url("../../images/pinkabstract.jpg");
+  font-family: "ArcadeClassic", sans-serif;
   color: white;
 }
 
 header {
-  padding: 2rem;
+  padding: 1rem;
   grid-column: 1/4;
   text-align: center;
+  font-size: 36px;
 }
 
 .left-sidebar {
@@ -38,5 +39,28 @@ main {
 
 .left-sidebar,
 .right-sidebar {
-  padding: 1rem;
+  font-size: 24px;
+  padding: 200px 1rem 200px;
+  justify-content: center;
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  font-size: 18px;
+  padding: 5px 0;
+}
+
+kbd {
+  font-family: "ArcadeClassic", sans-serif;
+  border-radius: 3px;
+  padding: 1px 2px 0;
+  border: 1px solid black;
+}
+
+p {
+  width: 300px;
 }

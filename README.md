@@ -8,11 +8,10 @@
     * Enemy/enemy collision acts wonky, need to refactor
 
 * Future Features:
-    * Add time survived to score
-    * Try to make enemies spawn out of bounds
-        * Then they cannot move out of bounds once inside screen
-    * Create models for rendering player, enemies, board, projectiles, etc.
     * Add styling to make game look presentable
+    * Add HTML elements for score, health, ammo, and difficulty modifiers overlays
+    * Add Game Over and Start Game screen
+    * Add Github, LinkedIn, and AngelList.
 
 ## Background
 This game is a 2d top-down shoot'em up game, in which the goal is to survive as long as possible until you are defeated. To break this game down,

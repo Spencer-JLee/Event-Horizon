@@ -6,18 +6,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="./dist/main.css" />
+    <link href="http://fonts.cdnfonts.com/css/arcadeclassic" rel="stylesheet">
+    <!-- <a href='https://www.freepik.com/vectors/pink-abstract'>Pink abstract vector created by freepik - www.freepik.com</a> -->
     <script src="./dist/main.js"></script>
     <title>Event Horizon</title>
 </head>
 
 <body>
     <header><h1>Event Horizon</h1></header>
-    <div class="left-sidebar">Left Sidebar</div>
+    <div class="left-sidebar">
+        <ul>Controls
+            <li> <kbd>W</kbd> to move up</li>
+            <li> <kbd>A</kbd> to move left</li>
+            <li> <kbd>S</kbd> to move down</li>
+            <li> <kbd>D</kbd> to move right</li>
+            <li> <kbd>Q</kbd> / <kbd>E</kbd> to switch weapons</li>
+            <li> <kbd>P</kbd> to pause</li>
+            <li> <kbd>R</kbd> to restart</li>
+        </ul>
+    </div>
     <main id="main">
         <canvas id="game-canvas"></canvas>
     </main>
-    <div class="right-sidebar">Right Sidebar</div>
-    <footer>Footer</footer>
+    <div class="right-sidebar">About:
+    
+    <p>
+        The goal of the game is to get as high of a score as possible. You'll 
+        earn points as you damage and defeat enemies. As your score increases,
+        there will be difficulty modifiers added to the enemies that will make 
+        them more difficult to defeat.
+    </p>
+
+
+    </div>
+    <footer></footer>
 </body>
 
 </html>

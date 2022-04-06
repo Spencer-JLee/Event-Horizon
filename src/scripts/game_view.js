@@ -53,7 +53,7 @@ class GameView{
 
     fire(e){
         let x = e.clientX - this.ctx.canvas.offsetLeft;
-        let y = e.clientY - this.ctx.canvas.offsetTop + 30;
+        let y = e.clientY - this.ctx.canvas.offsetTop;
         // debugger;
         // x = Math.floor(x * this.ctx.canvas.width / this.ctx.canvas.clientWidth);
         // y = Math.floor(y * this.ctx.canvas.height / this.ctx.canvas.clientHeight);
