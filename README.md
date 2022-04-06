@@ -1,4 +1,4 @@
-# Survival Game
+# Event Horizon
 
 ## TODO
 * Major Bugs:
