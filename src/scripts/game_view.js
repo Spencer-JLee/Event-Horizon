@@ -52,7 +52,14 @@ class GameView{
     }
 
     fire(e){
-        this.player.shoot([e.clientX, e.clientY]);
+        let x = e.clientX - this.ctx.canvas.offsetLeft;
+        let y = e.clientY - this.ctx.canvas.offsetTop + 30;
+        // debugger;
+        // x = Math.floor(x * this.ctx.canvas.width / this.ctx.canvas.clientWidth);
+        // y = Math.floor(y * this.ctx.canvas.height / this.ctx.canvas.clientHeight);
+        // console.log(x);
+        // console.log(y)
+        this.player.shoot([x, y]);
     }
 
     render(){

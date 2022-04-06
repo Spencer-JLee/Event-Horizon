@@ -1,3 +1,42 @@
 /*!*************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.scss ***!
   \*************************************************************************************************************************************/
+body {
+  display: grid;
+  height: 100vh;
+  grid-template: auto 1fr auto/auto 1fr auto;
+  background-color: #12539a;
+  font-family: system-ui, sans-serif;
+  color: white;
+}
+
+header {
+  padding: 2rem;
+  grid-column: 1/4;
+  text-align: center;
+}
+
+.left-sidebar {
+  grid-column: 1/2;
+}
+
+canvas {
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+main {
+  grid-column: 2/3;
+}
+
+.right-sidebar {
+  grid-column: 3/4;
+}
+
+.left-sidebar,
+.right-sidebar {
+  padding: 1rem;
+}

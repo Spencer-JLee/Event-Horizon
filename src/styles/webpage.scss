@@ -4,19 +4,16 @@ body{
     grid-template: auto 1fr auto / auto 1fr auto;
     background-color: #12539a;
     font-family: system-ui, sans-serif;
-    /* justify-content: center;
-    align-items: center; */
     color: white;
   }
   
   header{
-    /* background-color: yellow; */
     padding: 2rem;
     grid-column: 1 / 4;
+    text-align: center;
   }
   
   .left-sidebar {
-    /* background-color: pink; */
     grid-column: 1 / 2;
   }
   
@@ -33,7 +30,6 @@ body{
   }
   
   .right-sidebar {
-    /* background-color: green; */
     grid-column: 3 / 4;
   }
   

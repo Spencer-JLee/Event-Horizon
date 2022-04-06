@@ -153,7 +153,7 @@ class Game{
                         if(this.doubleDamage){
                             this.player.health -= 2;
                         }
-                        else{
+                        else if(!this.doubleDamage){
                             this.player.health -= 1;
                         }
                         
