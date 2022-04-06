@@ -11,7 +11,7 @@ class Enemy extends MovingObject{
     constructor(pos, game){
         super(pos, [1, 1], RADIUS, COLOR, game);
         this.health = 10;
-        this.speed = [1, 2, 3];
+        this.speed = [2, 3.5, 5];
         this.speedIdx = 0;
         this.doubledHealth = false;
         this.hitstun = false;

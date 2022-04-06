@@ -64,3 +64,9 @@ kbd {
 p {
   width: 300px;
 }
+
+footer {
+  padding: 1rem;
+  grid-column: 1/4;
+  text-align: center;
+}

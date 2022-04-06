@@ -297,11 +297,11 @@ class Game{
 
     createPickup(pos){
         let rng = Math.random() * 100;
-        if(rng < 50){
+        if(rng < 10){
             let health = new Health(pos, this);
             this.pickups.push(health);
         }
-        else if(rng >= 50){
+        else if(rng >= 80){
             let ammunition = new Ammunition(pos, this);
             this.pickups.push(ammunition);
         }
@@ -354,19 +354,19 @@ class Game{
     }
 
     increaseDifficulty(){
-        if(this.score > 5000 && !this.faster){
+        if(this.score > 10000 && !this.faster){
             this.faster = true;
         }
-        else if(this.score <= 5000 && this.score > 4000 && !this.doubleDamage){
+        else if(this.score < 10000 && this.score > 8000 && !this.doubleDamage){
             this.doubleDamage = true;
         } 
-        else if(this.score <= 4000 && this.score > 3000 && !this.lessPickup){
+        else if(this.score < 8000 && this.score >= 6000 && !this.lessPickup){
             this.lessPickup = true;
         }
-        else if(this.score <= 3000 && this.score > 2000 && !this.doubleHealth){
+        else if(this.score < 6000 && this.score >= 4000 && !this.doubleHealth){
             this.doubleHealth = true;  
         }
-        else if(this.score <= 2000 && this.score > 1000 && !this.fast){
+        else if(this.score < 4000 && this.score >= 2000 && !this.fast){
             this.fast = true;
         }
     }

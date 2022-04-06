@@ -14,7 +14,7 @@ const COLOR = "blue";
 const WEAPONS = ["Peashooter", "Tri-Shot", "Blaster", "Splitter"];
 const SPEEDS = [10, 10, 20, 3];
 const AMMO = [200, 100, 50, 25];
-const MAXSPEED = 7;
+const MAXSPEED = 6;
 
 
 class Player extends MovingObject{
