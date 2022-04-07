@@ -10,7 +10,7 @@ import Health from "./health"
 
 
 const background = new Image();
-background.src = "../../images/stage-back.png"
+background.src = "../../images/background.png"
 const DIM_X = 1024;
 const DIM_Y = 768;
 const NUM_ENEMIES = 10;
@@ -399,7 +399,7 @@ class Game{
     }
 
     draw(ctx){
-        ctx.drawImage(background, 0, 60, 256, 192, 0, 0, DIM_X, DIM_Y);
+        ctx.drawImage(background, 0, 0, 1024, 768, 0, 0, DIM_X, DIM_Y);
 
         this.allObjects().forEach(obj => {
             obj.draw(ctx);

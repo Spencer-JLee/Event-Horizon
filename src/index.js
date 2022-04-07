@@ -1,6 +1,6 @@
 import GameView from "./scripts/game_view"
 const background = new Image();
-background.src = "../../images/stage-back.png"
+background.src = "../../images/background.png"
 
 document.addEventListener("DOMContentLoaded", () => {
     const canvas = document.getElementById("game-canvas")
