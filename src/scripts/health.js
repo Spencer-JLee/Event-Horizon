@@ -1,7 +1,7 @@
 import MovingObject from "./moving_object";
 
 const consumable = new Image();
-consumable.src = "../../images/consumables.png"
+consumable.src = "../images/consumables.png"
 const RADIUS = 5;
 const COLOR = "white";
 

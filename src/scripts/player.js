@@ -6,9 +6,9 @@ import Ray from "./ray"
 import Big from "./big"
 
 const playerRight = new Image();
-playerRight.src = "../../images/playerRight.png"
+playerRight.src = "../images/playerRight.png"
 const playerLeft = new Image();
-playerLeft.src = "../../images/playerLeft.png"
+playerLeft.src = "../images/playerLeft.png"
 const RADIUS = 10;
 const COLOR = "blue";
 const WEAPONS = ["Peashooter", "Tri-Shot", "Blaster", "Splitter"];
