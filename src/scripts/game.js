@@ -399,7 +399,7 @@ class Game{
     }
 
     draw(ctx){
-        ctx.drawImage(background, 0, 0, 1024, 768, 0, 0, DIM_X, DIM_Y);
+        ctx.drawImage(background, 0, 0, DIM_X, DIM_Y, 0, 0, DIM_X, DIM_Y);
 
         this.allObjects().forEach(obj => {
             obj.draw(ctx);
