@@ -32,6 +32,7 @@ class Game{
         this.doubleDamage = false;
         this.faster = false;
         this.lessPickup = false;
+        background.addEventListener("load", this.draw, false)
     }
 
     addObject(obj){

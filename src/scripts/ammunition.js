@@ -9,6 +9,7 @@ const COLOR = "purple";
 class Ammunition extends MovingObject{
     constructor(pos, game){
         super(pos, [0, 0], RADIUS, COLOR, game);
+        consumable.addEventListener("load", this.draw, false)
     }
 
     draw(ctx){

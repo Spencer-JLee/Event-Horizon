@@ -1,3 +1,73 @@
-body{display:grid;height:100vh;grid-template:auto 1fr auto/auto 1fr auto;background-image:url("../images/pinkabstract.jpg");font-family:"ArcadeClassic",sans-serif;color:#fff}header{padding:1rem;grid-column:1/4;text-align:center;font-size:36px}.left-sidebar{grid-column:1/2}canvas{padding-left:0;padding-right:0;margin-left:auto;margin-right:auto;display:block;border-radius:25px}main{grid-column:2/3}.right-sidebar{grid-column:3/4}.left-sidebar,.right-sidebar{font-size:24px;padding:200px 1rem 200px;justify-content:center;text-align:center}ul{list-style:none}li{font-size:18px;padding:5px 0}kbd{font-family:"ArcadeClassic",sans-serif;border-radius:3px;padding:1px 2px 0;border:1px solid #000}p{width:300px}footer{padding:1rem;grid-column:1/4;text-align:center}
+/*!*************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.scss ***!
+  \*************************************************************************************************************************************/
+body {
+  display: grid;
+  height: 100vh;
+  grid-template: auto 1fr auto/auto 1fr auto;
+  background-image: url("../images/pinkabstract.jpg");
+  font-family: "ArcadeClassic", sans-serif;
+  color: white;
+}
 
-/*# sourceMappingURL=main.css.map*/
+header {
+  padding: 1rem;
+  grid-column: 1/4;
+  text-align: center;
+  font-size: 36px;
+}
+
+.left-sidebar {
+  grid-column: 1/2;
+}
+
+canvas {
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  border-radius: 25px;
+}
+
+main {
+  grid-column: 2/3;
+}
+
+.right-sidebar {
+  grid-column: 3/4;
+}
+
+.left-sidebar,
+.right-sidebar {
+  font-size: 24px;
+  padding: 200px 1rem 200px;
+  justify-content: center;
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  font-size: 18px;
+  padding: 5px 0;
+}
+
+kbd {
+  font-family: "ArcadeClassic", sans-serif;
+  border-radius: 3px;
+  padding: 1px 2px 0;
+  border: 1px solid black;
+}
+
+p {
+  width: 300px;
+}
+
+footer {
+  padding: 1rem;
+  grid-column: 1/4;
+  text-align: center;
+}
