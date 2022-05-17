@@ -20,6 +20,8 @@ class Enemy extends MovingObject{
         this.isMoving = false;
         this.currentFrameIdx = 3;
         this.frameCount = 0;
+        enemyLeft.addEventListener("load", this.draw, false)
+        enemyRight.addEventListener("load", this.draw, false)
     }
 
     findPlayer(player){
@@ -55,6 +57,7 @@ class Enemy extends MovingObject{
                 this.pos[1] - 15, 39, 39);
         }
     }
+    
 }
 
 export default Enemy;

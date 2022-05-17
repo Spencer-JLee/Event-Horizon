@@ -30,6 +30,8 @@ class Player extends MovingObject{
         this.isMoving = false;
         this.currentFrameIdx = 3;
         this.frameCount = 0;
+        playerRight.addEventListener("load", this.draw, false)
+        playerLeft.addEventListener("load", this.draw, false)
     }
 
     travel(velocity){
