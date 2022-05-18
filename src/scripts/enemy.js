@@ -1,9 +1,9 @@
 import MovingObject from "./moving_object";
 
 const enemyRight = new Image();
-enemyRight.src = "../../images/enemyRight.png"
+enemyRight.src = "./aA_Javascript_Project/images/enemyRight.png"
 const enemyLeft = new Image();
-enemyLeft.src = "../../images/enemyLeft.png"
+enemyLeft.src = "./aA_Javascript_Project/images/enemyLeft.png"
 const RADIUS = 10;
 const COLOR = 'orange';
 

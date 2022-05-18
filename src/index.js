@@ -1,6 +1,6 @@
 import GameView from "./scripts/game_view"
 const background = new Image();
-background.src = "../images/background.png"
+background.src = "./aA_Javascript_Project/images/background.png"
 const DIM_X = 1024;
 const DIM_Y = 768;
 
