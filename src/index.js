@@ -1,12 +1,12 @@
 import GameView from "./scripts/game_view"
 
 const imageURL = [
-    "../../images/background.png",
-    "../../images/consumables.png",
-    "../../images/enemyLeft.png",
-    "../../images/enemyRight.png",
-    "../../images/playerLeft.png",
-    "../../images/playerRight.png"
+    "../images/background.png",
+    "../images/consumables.png",
+    "../images/enemyLeft.png",
+    "../images/enemyRight.png",
+    "../images/playerLeft.png",
+    "../images/playerRight.png"
 ]
 const images = []
 
