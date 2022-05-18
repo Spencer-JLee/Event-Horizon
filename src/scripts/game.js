@@ -396,7 +396,7 @@ class Game{
 
     addNewEnemy(){
         while(this.enemies.length < NUM_ENEMIES){
-            let newEnemy = new Enemy(this.randomPosition());
+            let newEnemy = new Enemy(this.randomPosition(), this, this.images[2], this.images[3]);
             this.enemies.push(newEnemy);
         }
     }
