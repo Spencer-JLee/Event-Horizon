@@ -1,13 +1,13 @@
 import MovingObject from "./moving_object";
 
 
-// const consumable = new Image();
-// consumable.src = "../../images/consumables.png"
+const consumable = new Image();
+consumable.src = "../../images/consumables.png"
 const RADIUS = 5;
 const COLOR = "purple";
 
 class Ammunition extends MovingObject{
-    constructor(pos, game, consumable){
+    constructor(pos, game){
         super(pos, [0, 0], RADIUS, COLOR, game);
         // consumable.addEventListener("load", this.draw, false)
         this.consumable = consumable;

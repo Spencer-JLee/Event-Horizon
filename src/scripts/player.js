@@ -5,10 +5,10 @@ import Spread from "./spread";
 import Ray from "./ray"
 import Big from "./big"
 
-// const playerRight = new Image();
-// playerRight.src = "../../images/playerRight.png"
-// const playerLeft = new Image();
-// playerLeft.src = "../../images/playerLeft.png"
+const playerRight = new Image();
+playerRight.src = "../../images/playerRight.png"
+const playerLeft = new Image();
+playerLeft.src = "../../images/playerLeft.png"
 const RADIUS = 10;
 const COLOR = "blue";
 const WEAPONS = ["Peashooter", "Tri-Shot", "Blaster", "Splitter"];
@@ -18,7 +18,7 @@ const MAXSPEED = 6;
 
 
 class Player extends MovingObject{
-    constructor(game, playerLeft, playerRight){
+    constructor(game){
         super([512, 384], [0, 0], RADIUS, COLOR, game);
         this.weaponIdx = 0;
         this.health = 100;

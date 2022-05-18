@@ -1,14 +1,14 @@
 import MovingObject from "./moving_object";
 
-// const enemyRight = new Image();
-// enemyRight.src = "../../images/enemyRight.png"
-// const enemyLeft = new Image();
-// enemyLeft.src = "../../images/enemyLeft.png"
+const enemyRight = new Image();
+enemyRight.src = "../../images/enemyRight.png"
+const enemyLeft = new Image();
+enemyLeft.src = "../../images/enemyLeft.png"
 const RADIUS = 10;
 const COLOR = 'orange';
 
 class Enemy extends MovingObject{
-    constructor(pos, game, enemyLeft, enemyRight){
+    constructor(pos, game){
         super(pos, [1, 1], RADIUS, COLOR, game);
         this.health = 10;
         this.speed = [2, 3.5, 5];
