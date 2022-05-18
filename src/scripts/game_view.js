@@ -1,8 +1,8 @@
 import Game from "./game"
 
 class GameView{
-    constructor(ctx){
-        this.game = new Game();
+    constructor(ctx, images){
+        this.game = new Game(images);
         this.ctx = ctx;
         this.player = this.game.player;
         this.paused = false;

@@ -9,8 +9,8 @@ import Ammunition from "./ammunition"
 import Health from "./health"
 
 
-const background = new Image();
-background.src = "../images/background.png"
+// const background = new Image();
+// background.src = "../../images/background.png"
 const DIM_X = 1024;
 const DIM_Y = 768;
 const NUM_ENEMIES = 10;
@@ -19,11 +19,12 @@ const DAMAGE = [3, 2, 4, 5, 1]
 
 class Game{
 
-    constructor(){
+    constructor(images){
+        this.images = images;
         this.enemies = [];
         this.projectiles = [];
         this.pickups = [];
-        this.player = new Player(this);
+        this.player = new Player(this, this.images[4], this.images[5]);
         this.addEnemies();  
         this.score = 0;
         this.gameOver = false;
@@ -32,7 +33,8 @@ class Game{
         this.doubleDamage = false;
         this.faster = false;
         this.lessPickup = false;
-        background.addEventListener("load", this.draw, false)
+        this.background = this.images[0]
+        // background.addEventListener("load", this.draw, false)
     }
 
     addObject(obj){
@@ -43,7 +45,7 @@ class Game{
 
     addEnemies(){
         for(let i = 0; i < NUM_ENEMIES; i++){
-            let enemy = new Enemy(this.randomPosition(), this);
+            let enemy = new Enemy(this.randomPosition(), this, this.images[2], this.images[3]);
             this.enemies.push(enemy);
         }
     }
@@ -299,11 +301,11 @@ class Game{
     createPickup(pos){
         let rng = Math.random() * 100;
         if(rng < 10){
-            let health = new Health(pos, this);
+            let health = new Health(pos, this, this.images[1]);
             this.pickups.push(health);
         }
         else if(rng >= 80){
-            let ammunition = new Ammunition(pos, this);
+            let ammunition = new Ammunition(pos, this, this.images[1]);
             this.pickups.push(ammunition);
         }
     }
@@ -400,7 +402,7 @@ class Game{
     }
 
     draw(ctx){
-        ctx.drawImage(background, 0, 0, DIM_X, DIM_Y, 0, 0, DIM_X, DIM_Y);
+        ctx.drawImage(this.background, 0, 0, DIM_X, DIM_Y, 0, 0, DIM_X, DIM_Y);
 
         this.allObjects().forEach(obj => {
             obj.draw(ctx);
