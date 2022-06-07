@@ -21,12 +21,13 @@ document.addEventListener("DOMContentLoaded", () => {
     
     canvas.width = 1024;
     canvas.height = 768;
-    background.onload = function(){
-        ctx.drawImage(background, 0, 0, DIM_X, DIM_Y, 0, 0, DIM_X, DIM_Y);
-        ctx.font = "48px ArcadeClassic"
-        ctx.fillStyle = "white";
-        ctx.fillText("Press any key to start game", canvas.width / 2 - 275, canvas.height / 2);
-    }
+    // background.onload = function(){
+    //     ctx.drawImage(background, 0, 0, DIM_X, DIM_Y, 0, 0, DIM_X, DIM_Y);
+    //     ctx.font = "48px ArcadeClassic"
+    //     ctx.fillStyle = "white";
+    //     ctx.fillText("Press any key to start game", canvas.width / 2 - 275, canvas.height / 2);
+    // }
+    ctx.fillText("Press any key to start game", canvas.width / 2 - 275, canvas.height / 2);
     
 
     let gameView = new GameView(ctx);
