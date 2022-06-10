@@ -23,6 +23,7 @@ header{
 header h1{
   font-size: 48px;
   font-family: "ArcadeClassic";
+  text-shadow: 2px 2px black;
   padding: 1rem;
 }
 
@@ -50,18 +51,19 @@ main {
   grid-column: 3 / 4;
   padding-right: 1rem;
   word-wrap: break-word;
-  width: 20rem;
 }
 
 .left-sidebar,
 .right-sidebar {
-  font-family: "ArcadeClassic";
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   font-size: 24px;
   justify-content: space-evenly;
   text-align: center;
-  align-items: center;
+  width: 20rem;
+  font-weight: bold;
+  text-shadow: 1px 1px black;
   // border: 1px solid black;
   // border-radius: 10px;
 }
